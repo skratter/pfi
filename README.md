@@ -1,2 +1,2 @@
-# vue-webpack-template
-Simple Template with running Vue and Webpack Settings
+# cheeb
+A socket.io based graphical interface for FHEM.

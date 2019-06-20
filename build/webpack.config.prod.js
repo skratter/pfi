@@ -14,9 +14,22 @@ function resolve (dir) {
 
 module.exports = {
   mode: 'production',
+
   optimization: {
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
   },
+
+  resolve: {
+    extensions: [
+      '.js',
+      '.vue',
+      '.json'
+    ],
+    alias: {
+      '@': resolve('src')
+    }
+  },
+
   module: {
     rules: [
       {
@@ -37,17 +50,17 @@ module.exports = {
       }
     ]
   },
+
   plugins: [
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
+      template: resolve('index.html'),
       inject: true
     }),
     new CopyWebpackPlugin([{
-      from: resolve('static/img'),
-      to: resolve('dist/img'),
+      from: resolve('static'),
+      to: resolve('dist'),
       toType: 'dir'
     }]),
     new MiniCssExtractPlugin({

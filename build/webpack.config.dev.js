@@ -1,5 +1,6 @@
 'use strict'
 const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -19,6 +20,18 @@ module.exports = {
       poll: true
     }
   },
+
+  resolve: {
+    extensions: [
+      '.js',
+      '.vue',
+      '.json'
+    ],
+    alias: {
+      '@': resolve('src')
+    }
+  },
+
   module: {
     rules: [
       {
@@ -44,17 +57,18 @@ module.exports = {
       }
     ]
   },
+
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
+      template: resolve('index.html'),
       inject: true
     }),
     new CopyWebpackPlugin([{
-      from: resolve('static/img'),
-      to: resolve('dist/img'),
+      from: resolve('static'),
+      to: resolve('dist'),
       toType: 'dir'
     }]),
     new MiniCssExtractPlugin({
