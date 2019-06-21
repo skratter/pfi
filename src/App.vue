@@ -1,6 +1,7 @@
 <template>
   <div>
     <ul>
+      <li><bar /></li>
       <li
         v-for="(link, index) in links"
         :key="index"
@@ -21,6 +22,7 @@
     list-style: none;
     display: flex;
     padding: 0;
+    margin: 0;
   }
   li {
     padding: 5px 15px 5px 0;
