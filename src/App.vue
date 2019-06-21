@@ -2,14 +2,6 @@
   <div>
     <ul>
       <li><bar /></li>
-      <li
-        v-for="(link, index) in links"
-        :key="index"
-      >
-        <router-link :to="link.to">
-          {{ link.name }}
-        </router-link>
-      </li>
     </ul>
     <main>
       <router-view />
@@ -17,43 +9,13 @@
   </div>
 </template>
 
-<style lang="stylus" scoped>
-  ul {
-    list-style: none;
-    display: flex;
-    padding: 0;
-    margin: 0;
-  }
-  li {
-    padding: 5px 15px 5px 0;
-  }
-  li a {
-    text-decoration: none;
-    color: black;
-  }
-  li a:hover {
-    color: #404040;
-  }
-</style>
-
 <script>
 export default {
-  data: () => ({
-    links: [
-      {
-        name: 'Home',
-        to: '/'
-      },
-      {
-        name: 'Page 1',
-        to: '/page-1'
-      },
-      {
-        name: 'Bad Link',
-        to: '/random-bad-url'
-      }
-    ]
-  }),
+  data: () => ({}),
   mounted: () => {}
 }
 </script>
+
+<style lang="scss" scoped>
+
+</style>

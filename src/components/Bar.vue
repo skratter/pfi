@@ -30,7 +30,12 @@ export default {
       showNav: false,
       showApps: false,
       apps: [
-        { title: 'Home', icon: 'far fa-igloo fa-fw', colorTop: 'red', colorBottom: 'yellow' }
+        {
+          title: 'Home',
+          icon: 'far fa-igloo fa-fw',
+          colorTop: 'red',
+          colorBottom: 'yellow'
+        }
       ]
     }
   },
@@ -45,41 +50,49 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-    .container
-        background url('/img/bg_blurry.jpg') center center
-        width 100%
-        min-height 20vh
-        overflow hidden
+<style lang="scss" scoped>
+.container {
+  width: 100%;
+}
+.nav-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  z-index: 999;
+  i {
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}
 
-    .nav-icon
-        position absolute
-        top 0
-        right 0
-        padding 20px
-        z-index 999
+.nav-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: inherit;
+  width: 100%;
+  min-height: 100%;
 
-    .nav-icon i
-        color #ffffff
-        font-size 2rem
-        cursor pointer
-
-    .nav-container
-        position absolute
-        display flex
-        justify-content center
-        align-items center
-        background inherit
-        width 100%
-        min-height 100vh
-
-    .nav-container:before
-        content ''
-        position absolute
-        width 100%
-        min-height 100vh
-        background rgba(0,0,0,.5)
-        filter blur(10px)
-        z-index 10
-
+  &:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    min-height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+  }
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 </style>

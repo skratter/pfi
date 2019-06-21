@@ -7,6 +7,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserJSPlugin = require('terser-webpack-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const WorkboxPlugin = require('workbox-webpack-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -42,11 +43,21 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.styl(us)?$/,
+        test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'stylus-loader'
+          {
+            loader: 'style-loader' // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+            options: { url: false }
+          },
+          {
+            loader: 'sass-loader', // compiles Sass to CSS, using Node Sass by default
+            options: {
+              implementation: require('sass')
+            }
+          }
         ]
       }
     ]
@@ -59,13 +70,14 @@ module.exports = {
       template: resolve('index.html'),
       inject: true
     }),
+    new MiniCssExtractPlugin({
+      filename: 'main.css'
+    }),
+    new WorkboxPlugin.GenerateSW(),
     new CopyWebpackPlugin([{
       from: resolve('static'),
       to: resolve('dist'),
       toType: 'dir'
-    }]),
-    new MiniCssExtractPlugin({
-      filename: 'main.css'
-    })
+    }])
   ]
 }

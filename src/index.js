@@ -3,11 +3,19 @@ import App from '@/App.vue'
 import router from '@/router.js'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@/fontawesome-icons.js'
-import '../assets/app.styl'
+import '../assets/app.scss'
 import bar from '@/components/Bar.vue'
 
 Vue.component('fa-icon', FontAwesomeIcon)
 Vue.component('bar', bar)
+
+// Check that service workers are supported
+if ('serviceWorker' in navigator) {
+  // Use the window load event to keep the page load performant
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+  })
+}
 
 /* eslint-disable-next-line no-new */
 new Vue({
