@@ -1,12 +1,9 @@
 import Vue from 'vue'
 import App from '@/App.vue'
 import router from '@/router.js'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import '@/fontawesome-icons.js'
 import '../assets/app.scss'
 import bar from '@/components/Bar.vue'
 
-Vue.component('fa-icon', FontAwesomeIcon)
 Vue.component('bar', bar)
 
 // Check that service workers are supported

@@ -1,16 +1,14 @@
 <template>
   <div class="container">
     <div class="nav-icon">
-      <fa-icon
+      <i
         v-if="!showNav"
-        :icon="['far','bars']"
-        fixed-width
+        class="far fa-bars fa-fw"
         @click="showNavbar"
       />
-      <fa-icon
+      <i
         v-else
-        :icon="['far','times']"
-        fixed-width
+        class="far fa-times fa-fw"
         @click="hideNavbar"
       />
     </div>
