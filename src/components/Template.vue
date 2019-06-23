@@ -1,16 +1,14 @@
 <template>
   <div>
-    <bar />
-    <main>
-      <content-view />
-      <router-view />
-    </main>
+    <p>Content here!</p>
   </div>
 </template>
 
 <script>
 export default {
-  data: () => ({}),
+  data: () => {
+    return { }
+  },
   computed: { },
   mounted: () => { }
 }
