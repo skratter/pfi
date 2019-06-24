@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <bar />
-    <main>
-      <content-view />
-      <router-view />
-    </main>
-  </div>
+    <div>
+        <bar/>
+        <main>
+            <content-view/>
+            <router-view/>
+        </main>
+    </div>
 </template>
 
 <script>
 export default {
-  data: () => ({}),
-  computed: { },
-  mounted: () => { }
+    data: () => ({}),
+    computed: { },
+    mounted: () => { }
 }
 </script>
 

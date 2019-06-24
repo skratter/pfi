@@ -12,10 +12,10 @@ Vue.component('content-view', content)
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
-  // Start Service-Worker
-  // window.addEventListener('load', () => {
-  // navigator.serviceWorker.register('/service-worker.js')
-  // })
+    // Start Service-Worker
+    // window.addEventListener('load', () => {
+    // navigator.serviceWorker.register('/service-worker.js')
+    // })
 }
 
 // Initialize Socket
@@ -24,9 +24,9 @@ store.dispatch('getAllValues')
 
 /* eslint-disable-next-line no-new */
 new Vue({
-  el: '#app',
-  store,
-  router,
-  mounted: () => { },
-  render: h => h(App)
+    el: '#app',
+    store,
+    router,
+    mounted: () => { },
+    render: h => h(App)
 })

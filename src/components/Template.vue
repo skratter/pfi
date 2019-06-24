@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <p>Content here!</p>
-  </div>
+    <div>
+        <p>Content here!</p>
+    </div>
 </template>
 
 <script>
 export default {
-  data: () => {
-    return { }
-  },
-  computed: { },
-  mounted: () => { }
+    data: () => {
+        return { }
+    },
+    computed: { },
+    mounted: () => { }
 }
 </script>
 

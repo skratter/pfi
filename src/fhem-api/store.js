@@ -8,13 +8,13 @@ import getters from './getters.js'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  state: {
-    io: null,
-    allValues: null
-  },
-  mutations,
-  actions,
-  getters
+    state: {
+        io: null,
+        allValues: null
+    },
+    mutations,
+    actions,
+    getters
 })
 
 export default store
