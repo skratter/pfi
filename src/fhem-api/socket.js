@@ -15,8 +15,5 @@ socket.on('reading', function (data) {
     console.log('reading')
     console.log(data)
 })
-socket.on('value', function (data) {
-    console.log(data)
-})
 
 export default socket

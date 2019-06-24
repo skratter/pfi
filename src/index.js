@@ -4,11 +4,13 @@ import router from '@/router.js'
 import '../assets/app.scss'
 import bar from '@/components/Bar.vue'
 import content from '@/components/Content.vue'
+import controlplug from '@/components/ControlPlug'
 import store from '@/fhem-api/store.js'
 import socket from '@/fhem-api/socket.js'
 
 Vue.component('bar', bar)
 Vue.component('content-view', content)
+Vue.component('control-plug', controlplug)
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
@@ -21,6 +23,9 @@ if ('serviceWorker' in navigator) {
 // Initialize Socket
 store.commit('setSocket', socket)
 store.dispatch('getAllValues')
+socket.on('value', function (data) {
+    store.commit('setStatus', data)
+})
 
 /* eslint-disable-next-line no-new */
 new Vue({

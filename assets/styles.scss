@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Montserrat";
+    src: url("/webfonts/Montserrat-Regular.ttf");;
+}
+
 body {
     background-color: #000000;
     background-image: url("/img/bg.jpg");
@@ -5,4 +10,5 @@ body {
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;
+    font-family: 'Montserrat', sans-serif;
 }

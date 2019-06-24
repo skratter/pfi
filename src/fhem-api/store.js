@@ -9,8 +9,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
-        io: null,
-        allValues: null
+        io: undefined,
+        allValues: undefined
     },
     mutations,
     actions,

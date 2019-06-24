@@ -4,8 +4,8 @@ const actions = {
         commit('getAllValues')
     },
     // Toggle Device
-    toggleDevice ({ commit }, action) {
-        commit('toggleDevice', action)
+    setDevice ({ commit }, action) {
+        commit('setDevice', action)
     }
 }
 

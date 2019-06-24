@@ -7,6 +7,10 @@
             <button @click="toggleDevice()">
                 Toggle Device
             </button>
+            <control-plug
+                name="Baby"
+                device-name="HUEDevice2"
+            />
         </div>
     </div>
 </template>
@@ -49,7 +53,7 @@ export default {
             this.$store.dispatch('getAllValues')
         },
         toggleDevice () {
-            this.$store.dispatch('toggleDevice', {
+            this.$store.dispatch('setDevice', {
                 device: 'HUEDevice2',
                 state: 'off'
             })

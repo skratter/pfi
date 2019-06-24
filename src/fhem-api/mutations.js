@@ -4,13 +4,23 @@ const mutations = {
     },
     getAllValues (state) {
         state.io.emit('getAllValues', function (data) {
-            state.allValues = data
             console.log(data)
+            state.allValues = data
         })
     },
-    toggleDevice (state, action) {
+    setDevice (state, action) {
         let command = 'set ' + action.device + ' ' + action.state
-        this.io.emit('commandNoResp', command)
+        state.io.emit('commandNoResp', command)
+    },
+    setStatus (state, status) {
+        let key = Object.keys(status)[0]
+        state.allValues[key] = status[key]
+    },
+    getDeviceStatus (state, device) {
+        if (typeof state.allValues !== 'undefined') {
+            return state.allValues[device]
+        }
+        return undefined
     }
 }
 

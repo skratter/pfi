@@ -13,15 +13,13 @@
                         :style="{ '--i':i }"
                         class="app-container"
                     >
-                        <div
-                            class="app-card"
-                            :style="{ 'background': 'linear-gradient(to bottom, '+app.colorTop+', '+app.colorBottom+')'}"
-                        >
-                            <i :class="app.icon"></i>
-                        </div>
-                        <div class="app-title">
-                            {{ app.title }}
-                        </div>
+                        <control-plug
+                            :name="app.title"
+                            :device-name="app.title"
+                            :icon="app.icon"
+                            :color-top="app.colorTop"
+                            :color-bottom="app.colorBottom"
+                        />
                     </div>
                 </transition-group>
             </div>
@@ -38,16 +36,12 @@ export default {
             showApps: false,
             apps: [
                 {
-                    title: 'Home',
-                    icon: 'far fa-igloo fa-fw',
-                    colorTop: '#D1FE77',
-                    colorBottom: '#84B241'
+                    name: 'HUEDevice1',
+                    deviceName: 'HUEDevice1'
                 },
                 {
-                    title: 'Flight',
-                    icon: 'far fa-plane fa-fw',
-                    colorTop: '#FEFB81',
-                    colorBottom: '#E5AD4C'
+                    name: 'HUEDevice2',
+                    deviceName: 'HUEDevice2'
                 }
             ]
         }
@@ -116,41 +110,7 @@ export default {
         grid-template: repeat(auto-fit, minmax(120px, 1fr));
         width: 100%;
         max-width: 720px;
-    }
-}
-.app-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 20px;
-    z-index: 11;
-
-    .app-card {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 80px;
-        height: 80px;
-        border-radius: 20px;
-        box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.4);
-        font-size: 3rem;
-        cursor: pointer;
-        transition: transform 0.2s ease-in-out;
-
-        i {
-            color: #ffffff;
-        }
-
-        &:hover {
-            transform: scale(1.1);
-        }
-    }
-
-    .app-title {
-        color: #fff;
-        font-size: 1.2rem;
-        padding-top: 10px;
+        z-index: 11;
     }
 }
 .fade-enter-active,
