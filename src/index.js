@@ -2,14 +2,18 @@ import Vue from 'vue'
 import App from '@/App.vue'
 import router from '@/router.js'
 import '@/external/inobounce.js'
-import '@fortawesome/fontawesome-pro/js/all'
 import '../assets/app.scss'
 import bar from '@/components/Bar.vue'
 import content from '@/components/Content.vue'
 import controlplug from '@/components/ControlPlug'
 import store from '@/fhem-api/store.js'
 import socket from '@/fhem-api/socket.js'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import '@/fa-icons'
 
+Vue.config.productionTip = false
+
+Vue.component('fa-icon', FontAwesomeIcon)
 Vue.component('bar', bar)
 Vue.component('content-view', content)
 Vue.component('control-plug', controlplug)

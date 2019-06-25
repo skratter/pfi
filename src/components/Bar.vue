@@ -1,8 +1,8 @@
 <template>
     <div class="container">
         <div class="nav-icon">
-            <i v-if="!showNav" class="far fa-bars fa-fw" @click="showNavbar"></i>
-            <i v-else class="far fa-times fa-fw" @click="hideNavbar"></i>
+            <fa-icon v-if="!showNav" :icon="['far', 'bars']" fixed-width @click="showNavbar"/>
+            <fa-icon v-else :icon="['far', 'times']" fixed-width @click="hideNavbar"/>
         </div>
         <transition name="fade">
             <div v-if="showNav" class="nav-container">
@@ -14,11 +14,8 @@
                         class="app-container"
                     >
                         <control-plug
-                            :name="app.title"
-                            :device-name="app.title"
-                            :icon="app.icon"
-                            :color-top="app.colorTop"
-                            :color-bottom="app.colorBottom"
+                            :name="app.name"
+                            :device-name="app.deviceName"
                         />
                     </div>
                 </transition-group>
@@ -42,22 +39,6 @@ export default {
                 {
                     name: 'HUEDevice2',
                     deviceName: 'HUEDevice2'
-                },
-                {
-                    name: 'HUEDevice3',
-                    deviceName: 'HUEDevice3'
-                },
-                {
-                    name: 'HUEDevice3',
-                    deviceName: 'HUEDevice3'
-                },
-                {
-                    name: 'HUEDevice3',
-                    deviceName: 'HUEDevice3'
-                },
-                {
-                    name: 'HUEDevice3',
-                    deviceName: 'HUEDevice3'
                 }
             ]
         }
@@ -92,11 +73,9 @@ export default {
     right: 0;
     padding: 20px;
     z-index: 999;
-    i {
-        color: #ffffff;
-        font-size: 2rem;
-        cursor: pointer;
-    }
+    color: #ffffff;
+    font-size: 2rem;
+    cursor: pointer;
 }
 
 .nav-container {

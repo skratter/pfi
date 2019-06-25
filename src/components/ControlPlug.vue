@@ -7,7 +7,7 @@
                 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')'
             }"
         >
-            <i :class="icon"></i>
+            <fa-icon :icon="['far', 'plug']" fixed-width/>
         </div>
         <div class="app-title">
             {{ name }}
@@ -24,7 +24,6 @@ export default {
     },
     data: () => {
         return {
-            icon: 'fa fa-plug fa-fw',
             colorTop: '',
             colorBottom: '',
             colorInactiveTop: '#cccccc',
@@ -44,9 +43,7 @@ export default {
     },
     watch: {
         device: function () {
-            console.log(this.device)
             if (this.device === 'off') {
-                console.log('!')
                 this.colorTop = this.colorOffTop
                 this.colorBottom = this.colorOffBottom
             }
@@ -87,6 +84,7 @@ export default {
     padding: 20px;
     transition: .1s filter linear;
     -webkit-transition: .1s filter linear;
+    cursor: pointer;
 
     .app-card {
         display: flex;

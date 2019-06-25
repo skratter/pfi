@@ -2,7 +2,7 @@
     <div>
         <div>
             <button @click="getAllValues()">
-                Get All Values
+                Get JsonList
             </button>
             <control-plug
                 name="Baby"
@@ -40,7 +40,8 @@ export default {
     mounted: () => {},
     methods: {
         getAllValues () {
-            this.$store.dispatch('getAllValues')
+            // this.$store.state.io.emit('commandNoResp', 'JsonList2')
+            this.$store.dispatch('getJson', '')
         }
     }
 }
