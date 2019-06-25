@@ -1,6 +1,7 @@
 <template>
     <div class="app-card-icon" @click="switchDevice()">
         <div
+            :class="{ 'click-app': clickApp }"
             class="app-card"
             :style="{
                 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')'
@@ -15,6 +16,7 @@
 </template>
 
 <script>
+import { setTimeout } from 'timers'
 export default {
     props: {
         name: { type: String, required: true },
@@ -31,6 +33,7 @@ export default {
             colorOnBottom: '#00aa00',
             colorOffTop: '#ff0000',
             colorOffBottom: '#aa0000',
+            clickApp: false,
             status: ''
         }
     },
@@ -57,11 +60,15 @@ export default {
         this.colorTop = this.colorInactiveTop
         this.colorBottom = this.colorInactiveBottom
     },
-    mounted () {
-
-    },
     methods: {
         switchDevice () {
+            this.clickApp = true
+            let that = this
+
+            setTimeout(function () {
+                that.clickApp = false
+            }, 100)
+
             this.$store.dispatch('setDevice', {
                 device: this.deviceName,
                 state: 'toggle'
@@ -78,6 +85,8 @@ export default {
     align-items: center;
     flex-direction: column;
     padding: 20px;
+    transition: .1s filter linear;
+    -webkit-transition: .1s filter linear;
 
     .app-card {
         display: flex;
@@ -90,12 +99,15 @@ export default {
         font-size: 3rem;
         transition: transform 0.2s ease-in-out;
 
-        i {
+        svg {
             color: #ffffff;
         }
 
         &:hover {
             transform: scale(1.1);
+        }
+        html.can-touch &:hover {
+            transform: none; /* disable hover effect on touch devices */
         }
     }
 
@@ -104,5 +116,9 @@ export default {
         font-size: 1.2rem;
         padding-top: 10px;
     }
+}
+
+.click-app {
+    filter: brightness(0.8);
 }
 </style>

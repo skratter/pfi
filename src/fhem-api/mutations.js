@@ -16,6 +16,11 @@ const mutations = {
         let key = Object.keys(status)[0]
         state.allValues[key] = status[key]
     },
+    getJson (state, device) {
+        state.io.emit('JsonList2', device, function (data) {
+            console.log(data)
+        })
+    },
     getDeviceStatus (state, device) {
         if (typeof state.allValues !== 'undefined') {
             return state.allValues[device]

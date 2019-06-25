@@ -42,6 +42,22 @@ export default {
                 {
                     name: 'HUEDevice2',
                     deviceName: 'HUEDevice2'
+                },
+                {
+                    name: 'HUEDevice3',
+                    deviceName: 'HUEDevice3'
+                },
+                {
+                    name: 'HUEDevice3',
+                    deviceName: 'HUEDevice3'
+                },
+                {
+                    name: 'HUEDevice3',
+                    deviceName: 'HUEDevice3'
+                },
+                {
+                    name: 'HUEDevice3',
+                    deviceName: 'HUEDevice3'
                 }
             ]
         }
@@ -107,7 +123,7 @@ export default {
 
     .app-wrapper {
         display: grid;
-        grid-template: repeat(auto-fit, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         width: 100%;
         max-width: 720px;
         z-index: 11;

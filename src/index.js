@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import App from '@/App.vue'
 import router from '@/router.js'
+import '@/external/inobounce.js'
+import '@fortawesome/fontawesome-pro/js/all'
 import '../assets/app.scss'
 import bar from '@/components/Bar.vue'
 import content from '@/components/Content.vue'
@@ -15,9 +17,9 @@ Vue.component('control-plug', controlplug)
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
     // Start Service-Worker
-    // window.addEventListener('load', () => {
-    // navigator.serviceWorker.register('/service-worker.js')
-    // })
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+    })
 }
 
 // Initialize Socket
