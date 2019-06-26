@@ -8,6 +8,7 @@ import content from '@/components/Content.vue'
 import controlplug from '@/components/ControlPlug'
 import store from '@/fhem-api/store.js'
 import socket from '@/fhem-api/socket.js'
+
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@/fa-icons'
 

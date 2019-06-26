@@ -2,7 +2,7 @@
     <div>
         <div>
             <button @click="getAllValues()">
-                Get JsonList
+                Get JsonList from Server
             </button>
             <control-plug
                 name="Baby"

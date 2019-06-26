@@ -22,6 +22,11 @@ module.exports = {
         }
     },
 
+    watchOptions: {
+        aggregateTimeout: 300,
+        poll: 5000
+    },
+
     resolve: {
         extensions: [
             '.js',
