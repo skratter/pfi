@@ -12,8 +12,6 @@ import socket from '@/fhem-api/socket.js'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import '@/fa-icons'
 
-Vue.config.productionTip = false
-
 Vue.component('fa-icon', FontAwesomeIcon)
 Vue.component('bar', bar)
 Vue.component('content-view', content)

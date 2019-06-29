@@ -14,7 +14,6 @@
                         class="app-container"
                     >
                         <control-plug
-                            :name="app.name"
                             :device-name="app.deviceName"
                         />
                     </div>
@@ -33,11 +32,9 @@ export default {
             showApps: false,
             apps: [
                 {
-                    name: 'HUEDevice1',
-                    deviceName: 'HUEDevice1'
+                    deviceName: 'HUEDevice2'
                 },
                 {
-                    name: 'HUEDevice2',
                     deviceName: 'HUEDevice2'
                 }
             ]

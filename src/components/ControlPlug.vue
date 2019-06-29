@@ -16,10 +16,8 @@
 </template>
 
 <script>
-import { setTimeout } from 'timers'
 export default {
     props: {
-        name: { type: String, required: true },
         deviceName: { type: String, required: true }
     },
     data: () => {
@@ -33,6 +31,7 @@ export default {
             colorOffTop: '#ff0000',
             colorOffBottom: '#aa0000',
             clickApp: false,
+            name: '',
             status: ''
         }
     },
@@ -43,21 +42,30 @@ export default {
     },
     watch: {
         device: function () {
-            if (this.device === 'off') {
-                this.colorTop = this.colorOffTop
-                this.colorBottom = this.colorOffBottom
-            }
-            if (this.device === 'on') {
-                this.colorTop = this.colorOnTop
-                this.colorBottom = this.colorOnBottom
-            }
+            this.setDevice()
         }
     },
     created () {
         this.colorTop = this.colorInactiveTop
         this.colorBottom = this.colorInactiveBottom
+        console.log(this.device)
+
+        if (this.device !== '') {
+            this.setDevice()
+        }
     },
     methods: {
+        setDevice () {
+            if (this.device.Readings.state.Value === 'off') {
+                this.colorTop = this.colorOffTop
+                this.colorBottom = this.colorOffBottom
+            }
+            if (this.device.Readings.state.Value === 'on') {
+                this.colorTop = this.colorOnTop
+                this.colorBottom = this.colorOnBottom
+            }
+            this.name = this.device.Attributes.alias
+        },
         switchDevice () {
             this.clickApp = true
             let that = this

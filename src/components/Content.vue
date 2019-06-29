@@ -5,7 +5,6 @@
                 Get JsonList from Server
             </button>
             <control-plug
-                name="Baby"
                 device-name="HUEDevice2"
             />
         </div>
