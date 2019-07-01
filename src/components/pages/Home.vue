@@ -1,12 +1,18 @@
 <template>
     <div>
         <div>
+            <h1 style="color:white;">
+                Home !!!
+            </h1>
             <button @click="getAllValues()">
-                Get JsonList from Server
+                Get JsonList from Server !
             </button>
             <control-plug
                 device-name="HUEDevice2"
             />
+            <router-link :to="{ name: 'funktionen' }">
+                Link Funktionen
+            </router-link>
         </div>
     </div>
 </template>

@@ -13,8 +13,12 @@
                         :style="{ '--i':i }"
                         class="app-container"
                     >
-                        <control-plug
-                            :device-name="app.deviceName"
+                        <control-link
+                            :name="app.name"
+                            :color-top="app.colorTop"
+                            :color-bottom="app.colorBottom"
+                            :icon="app.icon"
+                            :route="app.route"
                         />
                     </div>
                 </transition-group>
@@ -28,14 +32,20 @@ import { setTimeout } from 'timers'
 export default {
     data: () => {
         return {
-            showNav: false,
             showApps: false,
             apps: [
                 {
-                    deviceName: 'HUEDevice2'
-                },
-                {
-                    deviceName: 'HUEDevice2'
+                    name: 'Home',
+                    colorTop: '#FFEE00',
+                    colorBottom: '#FFA300',
+                    icon: ['fas', 'home'],
+                    route: 'home'
+                }, {
+                    name: 'Funktionen',
+                    colorTop: '#FFEE00',
+                    colorBottom: '#FFA300',
+                    icon: ['fas', 'bus'],
+                    route: 'funktionen'
                 }
             ]
         }
@@ -43,17 +53,32 @@ export default {
     computed: {
         getApps () {
             return this.showApps === true ? this.apps : []
+        },
+        showNav () {
+            return this.$store.getters.bar
+        }
+    },
+    watch: {
+        '$route' (to, from) {
+            if (to.name !== to.from && this.showNav) {
+                this.$store.commit('setBar', false)
+            }
+        },
+        showNav: function () {
+            if (!this.showNav) {
+                this.hideNavbar()
+            }
         }
     },
     methods: {
         showNavbar () {
-            this.showNav = !this.showNav
+            this.$store.commit('setBar', true)
             setTimeout(() => {
                 this.showApps = true
-            }, 400)
+            }, 200)
         },
         hideNavbar () {
-            this.showNav = !this.showNav
+            this.$store.commit('setBar', false)
             this.showApps = !this.showApps
         }
     }
@@ -107,7 +132,7 @@ export default {
 }
 .fade-enter-active,
 .fade-leave-active {
-    transition: all 0.4s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .fade-enter,
 .fade-leave-to {
@@ -116,9 +141,9 @@ export default {
 
 .slide-in-enter-active,
 .slide-in-leave-active {
-    transition: opacity 0.2s linear,
-        transform 0.2s cubic-bezier(0.2, 0.5, 0.1, 1);
-    transition-delay: calc(0.1s * var(--i));
+    transition: opacity 0.1s linear,
+        transform 0.1s cubic-bezier(0.2, 0.5, 0.1, 1);
+    transition-delay: calc(0.05s * var(--i));
 }
 .slide-in-enter,
 .slide-in-leave-to {

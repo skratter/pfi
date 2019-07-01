@@ -1,6 +1,9 @@
 import Vue from 'vue'
 
 const mutations = {
+    setBar (state, bar) {
+        Vue.set(state, 'bar', bar)
+    },
     setSocket (state, io) {
         Vue.set(state, 'io', io)
     },

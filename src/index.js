@@ -4,8 +4,8 @@ import router from '@/router.js'
 import '@/external/inobounce.js'
 import '../assets/app.scss'
 import bar from '@/components/Bar.vue'
-import content from '@/components/Content.vue'
 import controlplug from '@/components/ControlPlug'
+import controllink from '@/components/ControlLink'
 import store from '@/fhem-api/store.js'
 import socket from '@/fhem-api/socket.js'
 
@@ -14,15 +14,15 @@ import '@/fa-icons'
 
 Vue.component('fa-icon', FontAwesomeIcon)
 Vue.component('bar', bar)
-Vue.component('content-view', content)
 Vue.component('control-plug', controlplug)
+Vue.component('control-link', controllink)
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
     // Start Service-Worker
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-    })
+    // window.addEventListener('load', () => {
+    // navigator.serviceWorker.register('/service-worker.js')
+    // })
 }
 
 // Initialize Socket

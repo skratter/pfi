@@ -2,7 +2,6 @@
     <div>
         <bar/>
         <main>
-            <content-view/>
             <router-view/>
         </main>
     </div>

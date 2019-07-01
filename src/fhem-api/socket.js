@@ -4,7 +4,7 @@ const options = {
     timeout: 5000,
     'sync disconnect on unload': true
 }
-const server = 'https://smart.skratter.com:8086'
+const server = 'http://192.168.178.10:8086'
 const socket = io(server, options)
 
 socket.on('connect', function () {

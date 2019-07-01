@@ -6,11 +6,11 @@
             :style="{
                 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')'
             }"
-            @click="switchDevice()"
+            @click="clickIcon()"
         >
-            <fa-icon :icon="['far', 'plug']" fixed-width/>
+            <fa-icon :icon="icon" fixed-width/>
         </div>
-        <div class="app-title" @click="switchDevice()">
+        <div class="app-title" @click="clickIcon()">
             {{ name }}
         </div>
     </div>
@@ -19,55 +19,29 @@
 <script>
 export default {
     props: {
-        deviceName: { type: String, required: true }
+        name: { type: String, required: true },
+        colorTop: { type: String, required: true },
+        colorBottom: { type: String, required: true },
+        icon: { type: Array, required: true },
+        route: { type: String, required: true }
     },
     data: () => {
         return {
-            colorTop: '',
-            colorBottom: '',
-            colorInactiveTop: '#cccccc',
-            colorInactiveBottom: '#aaaaaa',
-            colorOnTop: '#00ff00',
-            colorOnBottom: '#00aa00',
-            colorOffTop: '#ff0000',
-            colorOffBottom: '#aa0000',
-            clickApp: false,
-            name: '',
-            status: ''
+            clickApp: false
         }
     },
     computed: {
-        device: function () {
-            return this.$store.getters.device(this.deviceName)
-        }
+
     },
     watch: {
-        device: function () {
-            this.setDevice()
-        }
+
     },
     created () {
-        this.colorTop = this.colorInactiveTop
-        this.colorBottom = this.colorInactiveBottom
-        console.log(this.device)
 
-        if (this.device !== '') {
-            this.setDevice()
-        }
     },
     methods: {
-        setDevice () {
-            if (this.device.Readings.state.Value === 'off') {
-                this.colorTop = this.colorOffTop
-                this.colorBottom = this.colorOffBottom
-            }
-            if (this.device.Readings.state.Value === 'on') {
-                this.colorTop = this.colorOnTop
-                this.colorBottom = this.colorOnBottom
-            }
-            this.name = this.device.Attributes.alias
-        },
-        switchDevice () {
+        clickIcon () {
+            this.$router.push({ name: this.route })
             this.clickApp = true
             let that = this
 
@@ -75,10 +49,7 @@ export default {
                 that.clickApp = false
             }, 100)
 
-            this.$store.dispatch('setDevice', {
-                device: this.deviceName,
-                state: 'toggle'
-            })
+            this.$store.commit('setBar', false)
         }
     }
 }
