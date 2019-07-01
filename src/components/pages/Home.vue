@@ -7,7 +7,7 @@
             <button @click="getAllValues()">
                 Get JsonList from Server !
             </button>
-            <control-plug
+            <tile-plug
                 device-name="HUEDevice2"
             />
             <router-link :to="{ name: 'funktionen' }">

@@ -13,7 +13,7 @@
                         :style="{ '--i':i }"
                         class="app-container"
                     >
-                        <control-link
+                        <tile-link
                             :name="app.name"
                             :color-top="app.colorTop"
                             :color-bottom="app.colorBottom"
