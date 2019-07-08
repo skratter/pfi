@@ -10,11 +10,7 @@
         <transition name="fade">
             <div v-if="showNav" class="nav-container">
                 <transition-group class="app-wrapper" name="slide-in">
-                    <div
-                        v-for="(app, i) in getApps"
-                        :key="'app'+i"
-                        :style="{ '--i':i }"
-                    >
+                    <div v-for="(app, i) in getApps" :key="'app'+i" :style="{ '--i':i }">
                         <tile-link
                             :name="app.name"
                             :color-top="app.colorTop"
@@ -145,7 +141,7 @@ export default {
         right: 0;
         width: 100%;
         min-height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.6);
         z-index: 10;
     }
 

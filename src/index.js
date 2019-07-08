@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from '@/App.vue'
 import router from '@/router.js'
+import vuetify from '@/vuetify.js'
 
 import '@/external/inobounce.js'
 import '../assets/app.scss'
@@ -10,14 +11,8 @@ import TilePlug from '@/components/tiles/TilePlug'
 import TileLink from '@/components/tiles/TileLink'
 import TileLight from '@/components/tiles/TileLight'
 
-import Vuetify from 'vuetify'
-
 import store from '@/fhem-api/store.js'
 import socket from '@/fhem-api/socket.js'
-
-Vue.use(Vuetify, {
-    iconfont: 'fa'
-})
 
 Vue.component('bar', bar)
 Vue.component('tile-plug', TilePlug)
@@ -44,6 +39,7 @@ new Vue({
     el: '#app',
     store,
     router,
+    vuetify,
     mounted: () => { },
     render: h => h(App)
 })

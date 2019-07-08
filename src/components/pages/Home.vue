@@ -12,7 +12,7 @@
             <v-container fluid grid-list-xl>
                 <v-layout row wrap justify-center>
                     <tile-light device-name="HUEDevice1"/>
-                    <tile-plug device-name="HUEDevice1"/>
+                    <tile-plug device-name="HUEDevice2"/>
                     <tile-link
                         name="Test"
                         color-top="red"

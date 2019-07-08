@@ -1,5 +1,5 @@
 <template>
-    <v-app id="inspire">
+    <v-app id="myApp">
         <bar/>
         <main>
             <router-view/>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#inspire {
+#myApp {
     background-color: #000000;
     background-image: url("/img/bg.jpg");
     background-repeat: no-repeat;

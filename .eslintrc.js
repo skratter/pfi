@@ -8,6 +8,7 @@ module.exports = {
   extends: [
     'plugin:vue/recommended',
     'standard'
+    // 'vuetify'
   ],
   "rules": {
     // enable additional rules

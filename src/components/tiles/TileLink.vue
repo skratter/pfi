@@ -72,7 +72,7 @@ export default {
         align-items: center;
         width: 80px;
         height: 80px;
-        border-radius: 2px;
+        border-radius: 4px;
         box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.4);
         cursor: pointer;
         transition: transform 0.2s ease-in-out;
