@@ -8,7 +8,7 @@
             }"
             @click="switchDevice()"
         >
-            <fa-icon :icon="['far', 'plug']" fixed-width/>
+            <v-icon>far fa-plug fa-fw</v-icon>
         </div>
         <div class="app-title" @click="switchDevice()">
             {{ name }}
@@ -32,7 +32,7 @@ export default {
             colorOffTop: '#ff0000',
             colorOffBottom: '#aa0000',
             clickApp: false,
-            name: '',
+            name: 'No Alias defined',
             status: ''
         }
     },
@@ -90,7 +90,8 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 20px;
+    min-width: 200px;
+    margin: 20px;
     transition: 0.1s filter linear;
     -webkit-transition: 0.1s filter linear;
 
@@ -100,14 +101,14 @@ export default {
         align-items: center;
         width: 80px;
         height: 80px;
-        border-radius: 20px;
+        border-radius: 2px;
         box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.4);
-        font-size: 3rem;
         cursor: pointer;
         transition: transform 0.2s ease-in-out;
 
-        svg {
+        i {
             color: #ffffff;
+            font-size: 3rem;
         }
 
         &:hover {
@@ -120,7 +121,7 @@ export default {
 
     .app-title {
         color: #fff;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         padding-top: 10px;
         cursor: pointer;
     }

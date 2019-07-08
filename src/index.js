@@ -1,21 +1,28 @@
 import Vue from 'vue'
 import App from '@/App.vue'
 import router from '@/router.js'
+
 import '@/external/inobounce.js'
 import '../assets/app.scss'
-import bar from '@/components/Bar.vue'
+
+import bar from '@/components/Bar'
 import TilePlug from '@/components/tiles/TilePlug'
 import TileLink from '@/components/tiles/TileLink'
+import TileLight from '@/components/tiles/TileLight'
+
+import Vuetify from 'vuetify'
+
 import store from '@/fhem-api/store.js'
 import socket from '@/fhem-api/socket.js'
 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import '@/fa-icons'
+Vue.use(Vuetify, {
+    iconfont: 'fa'
+})
 
-Vue.component('fa-icon', FontAwesomeIcon)
 Vue.component('bar', bar)
 Vue.component('tile-plug', TilePlug)
 Vue.component('tile-link', TileLink)
+Vue.component('tile-light', TileLight)
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {

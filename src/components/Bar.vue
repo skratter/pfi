@@ -1,9 +1,12 @@
 <template>
-    <div class="container">
-        <div class="nav-icon">
-            <fa-icon v-if="!showNav" :icon="['far', 'bars']" fixed-width @click="showNavbar"/>
-            <fa-icon v-else :icon="['far', 'times']" fixed-width @click="hideNavbar"/>
-        </div>
+    <div class="bar-container">
+        <v-icon v-if="!showNav" class="nav-icon" @click="showNavbar">
+            far fa-bars fa-fw
+        </v-icon>
+        <v-icon v-else class="nav-icon" @click="hideNavbar">
+            far fa-times fa-fw
+        </v-icon>
+
         <transition name="fade">
             <div v-if="showNav" class="nav-container">
                 <transition-group class="app-wrapper" name="slide-in">
@@ -11,7 +14,6 @@
                         v-for="(app, i) in getApps"
                         :key="'app'+i"
                         :style="{ '--i':i }"
-                        class="app-container"
                     >
                         <tile-link
                             :name="app.name"
@@ -38,13 +40,37 @@ export default {
                     name: 'Home',
                     colorTop: '#FFEE00',
                     colorBottom: '#FFA300',
-                    icon: ['fas', 'home'],
+                    icon: 'fas fa-home fa-fw',
                     route: 'home'
                 }, {
                     name: 'Funktionen',
                     colorTop: '#FFEE00',
                     colorBottom: '#FFA300',
-                    icon: ['fas', 'bus'],
+                    icon: 'fas fa-bus fa-fw',
+                    route: 'funktionen'
+                }, {
+                    name: 'Funktionen',
+                    colorTop: '#FFEE00',
+                    colorBottom: '#FFA300',
+                    icon: 'fas fa-bus fa-fw',
+                    route: 'funktionen'
+                }, {
+                    name: 'Funktionen',
+                    colorTop: '#FFEE00',
+                    colorBottom: '#FFA300',
+                    icon: 'fas fa-bus fa-fw',
+                    route: 'funktionen'
+                }, {
+                    name: 'Funktionen',
+                    colorTop: '#FFEE00',
+                    colorBottom: '#FFA300',
+                    icon: 'fas fa-bus fa-fw',
+                    route: 'funktionen'
+                }, {
+                    name: 'Funktionen',
+                    colorTop: '#FFEE00',
+                    colorBottom: '#FFA300',
+                    icon: 'fas fa-bus fa-fw',
                     route: 'funktionen'
                 }
             ]
@@ -86,17 +112,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.bar-container {
     width: 100%;
 }
 .nav-icon {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 20px;
+    margin: 20px;
     z-index: 999;
     color: #ffffff;
-    font-size: 2rem;
+    font-size: 2.5rem;
     cursor: pointer;
 }
 
@@ -110,6 +136,7 @@ export default {
     background: inherit;
     width: 100%;
     min-height: 100%;
+    z-index: 100;
 
     &:before {
         content: '';
@@ -124,7 +151,7 @@ export default {
 
     .app-wrapper {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         width: 100%;
         max-width: 720px;
         z-index: 11;

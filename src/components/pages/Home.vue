@@ -4,12 +4,25 @@
             <h1 style="color:white;">
                 Home !!!
             </h1>
+
             <button @click="getAllValues()">
                 Get JsonList from Server !
             </button>
-            <tile-plug
-                device-name="HUEDevice2"
-            />
+
+            <v-container fluid grid-list-xl>
+                <v-layout row wrap justify-center>
+                    <tile-light device-name="HUEDevice1"/>
+                    <tile-plug device-name="HUEDevice1"/>
+                    <tile-link
+                        name="Test"
+                        color-top="red"
+                        color-bottom="orange"
+                        icon="fas fa-bus fa-fw"
+                        route="home"
+                    />
+                </v-layout>
+            </v-container>
+
             <router-link :to="{ name: 'funktionen' }">
                 Link Funktionen
             </router-link>
@@ -41,8 +54,10 @@ export default {
             )
         }
     },
-    computed: {},
-    mounted: () => {},
+    computed: {
+
+    },
+    mounted: () => { },
     methods: {
         getAllValues () {
             // this.$store.state.io.emit('commandNoResp', 'JsonList2')
@@ -53,4 +68,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.item {
+  min-height: 50px;
+  min-width: 80px;
+  margin: 10px;
+}
 </style>
