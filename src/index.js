@@ -41,14 +41,6 @@ if ('serviceWorker' in navigator) {
     // })
 }
 
-// Initialize Socket
-// store.commit('setSocket', socket)
-// store.dispatch('getAllValues')
-// socket.on('value', function (data) {
-//     store.commit('setStatus', data)
-// })
-// console.log(socket)
-
 store.commit('setDemo', settings.demo)
 
 /* eslint-disable-next-line no-new */
