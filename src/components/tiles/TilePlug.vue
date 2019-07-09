@@ -54,7 +54,10 @@ export default {
     },
     mounted () {
         this.demo = this.$store.getters.demo
-        this.setDevice()
+
+        if (this.device !== '' || this.demo) {
+            this.setDevice()
+        }
     },
     methods: {
         setDevice () {

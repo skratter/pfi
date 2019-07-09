@@ -23,32 +23,15 @@
 export default {
     data: () => {
         return {
-
+            title: 'Kinderzimmer (Joshi)'
         }
     },
-    // sockets: {
-    //     connect () {
-    //         // Fired when the socket connects.
-    //         this.isConnected = true
-    //         this.$options.sockets.reading = data => {
-    //             console.log(data)
-    //         }
-    //     },
-
-    //     disconnect () {
-    //         this.isConnected = false
-    //     },
-
-    //     reading (val) {
-    //         console.log(
-    //             'this method was fired by the socket server. eg: io.emit("customEmit", data)'
-    //         )
-    //     }
-    // },
     computed: {
 
     },
-    mounted: () => { },
+    mounted () {
+        this.$store.commit('setTitle', this.title)
+    },
     methods: {
         // getAllValues () {
         //     this.$store.dispatch('getJson', '')

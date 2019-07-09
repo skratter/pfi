@@ -30,6 +30,7 @@
 export default {
     data: () => {
         return {
+            title: 'Räume',
             apps: [
                 {
                     name: 'Kinderzimmer',
@@ -42,7 +43,9 @@ export default {
         }
     },
     computed: { },
-    mounted: () => { },
+    mounted () {
+        this.$store.commit('setTitle', this.title)
+    },
     methods: {
     }
 }

@@ -4,6 +4,9 @@ const mutations = {
     setDemo (state, mode) {
         Vue.set(state, 'demo', mode)
     },
+    setTitle (state, title) {
+        Vue.set(state, 'title', title)
+    },
     setBar (state, bar) {
         Vue.set(state, 'bar', bar)
     },
@@ -15,7 +18,7 @@ const mutations = {
             data.Results.forEach(function (element) {
                 Vue.set(state, element.Name, element)
             })
-            console.log(state)
+            // console.log(state)
         })
     },
     setDevice (state, action) {

@@ -63,9 +63,14 @@ export default {
         }
     },
     computed: {
-
+        device: function () {
+            return this.$store.getters.device(this.deviceName)
+        }
     },
     watch: {
+        device: function () {
+            this.setDevice()
+        },
         slider: function () {
             if (this.slider > 0) {
                 this.onoff = true
@@ -97,12 +102,22 @@ export default {
         this.demo = this.$store.getters.demo
         this.onoff = this.slider !== 0
 
-        if (this.demo) {
-            this.name = 'Demo'
+        if (this.device !== '' || this.demo) {
+            this.setDevice()
         }
     },
     methods: {
-
+        setDevice () {
+            if (this.demo) {
+                this.name = 'Demo'
+            } else {
+                this.name = this.device.Attributes.alias
+                console.log(this.device)
+                if (this.device.Readings.state.Value === 'off') {
+                    this.slider = 0
+                }
+            }
+        }
     }
 }
 </script>

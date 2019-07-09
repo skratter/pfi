@@ -3,6 +3,7 @@ const getters = {
     io: state => state.io,
     device: state => device => (typeof state[device] === 'undefined') ? '' : state[device],
     bar: state => state.bar,
-    demo: state => state.demo
+    demo: state => state.demo,
+    title: state => state.title
 }
 export default getters

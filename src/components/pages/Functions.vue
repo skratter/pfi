@@ -30,6 +30,7 @@
 export default {
     data: () => {
         return {
+            title: 'Funktionen',
             apps: [
                 {
                     name: 'BVG',
@@ -42,7 +43,9 @@ export default {
         }
     },
     computed: {},
-    mounted: () => {},
+    mounted () {
+        this.$store.commit('setTitle', this.title)
+    },
     methods: {
     }
 }

@@ -1,5 +1,8 @@
 <template>
     <div class="bar-container">
+        <h2 style="margin-left: 10px;color: white; line-height: 50px;">
+            {{ title }}
+        </h2>
         <v-icon v-if="!showNav" class="nav-icon" @click="showNavbar">
             far fa-bars fa-fw
         </v-icon>
@@ -61,6 +64,9 @@ export default {
         }
     },
     computed: {
+        title: function () {
+            return this.$store.getters.title
+        },
         getApps () {
             return this.showApps === true ? this.apps : []
         },
@@ -98,15 +104,17 @@ export default {
 <style lang="scss" scoped>
 .bar-container {
     width: 100%;
+    height: 50px;
+    background: rgba(0,0,0,.4);
 }
 .nav-icon {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 20px;
+    margin: 10px;
     z-index: 999;
     color: #ffffff;
-    font-size: 2.5rem;
+    font-size: 2rem;
     cursor: pointer;
 }
 
