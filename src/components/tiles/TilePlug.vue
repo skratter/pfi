@@ -23,6 +23,9 @@ export default {
     },
     data: () => {
         return {
+            demo: false,
+            status: false,
+
             colorTop: '',
             colorBottom: '',
             colorInactiveTop: 'rgba(204,204,204,0.6)',
@@ -32,8 +35,7 @@ export default {
             colorOffTop: 'rgba(255,0,0,0.6)',
             colorOffBottom: 'rgba(200,0,0,0.6)',
             clickApp: false,
-            name: 'No Alias defined',
-            status: ''
+            name: 'No Alias defined'
         }
     },
     computed: {
@@ -49,23 +51,29 @@ export default {
     created () {
         this.colorTop = this.colorInactiveTop
         this.colorBottom = this.colorInactiveBottom
-        console.log(this.device)
-
-        if (this.device !== '') {
-            this.setDevice()
-        }
+    },
+    mounted () {
+        this.demo = this.$store.getters.demo
+        this.setDevice()
     },
     methods: {
         setDevice () {
-            if (this.device.Readings.state.Value === 'off') {
+            if (this.demo) {
+                this.name = 'Demo'
                 this.colorTop = this.colorOffTop
                 this.colorBottom = this.colorOffBottom
+                this.status = false
+            } else {
+                if (this.device.Readings.state.Value === 'off') {
+                    this.colorTop = this.colorOffTop
+                    this.colorBottom = this.colorOffBottom
+                }
+                if (this.device.Readings.state.Value === 'on') {
+                    this.colorTop = this.colorOnTop
+                    this.colorBottom = this.colorOnBottom
+                }
+                this.name = this.device.Attributes.alias
             }
-            if (this.device.Readings.state.Value === 'on') {
-                this.colorTop = this.colorOnTop
-                this.colorBottom = this.colorOnBottom
-            }
-            this.name = this.device.Attributes.alias
         },
         switchDevice () {
             this.clickApp = true
@@ -75,10 +83,21 @@ export default {
                 that.clickApp = false
             }, 100)
 
-            this.$store.dispatch('setDevice', {
-                device: this.deviceName,
-                state: 'toggle'
-            })
+            if (!this.demo) {
+                this.$store.dispatch('setDevice', {
+                    device: this.deviceName,
+                    state: 'toggle'
+                })
+            } else {
+                this.status = !this.status
+                if (this.status) {
+                    this.colorTop = this.colorOnTop
+                    this.colorBottom = this.colorOnBottom
+                } else {
+                    this.colorTop = this.colorOffTop
+                    this.colorBottom = this.colorOffBottom
+                }
+            }
         }
     }
 }
@@ -90,7 +109,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-width: 200px;
+    min-width: 100px;
     margin: 20px;
     transition: 0.1s filter linear;
     -webkit-transition: 0.1s filter linear;

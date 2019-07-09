@@ -35,39 +35,27 @@ export default {
                 {
                     name: 'Home',
                     colorTop: '#FFEE00',
-                    colorBottom: '#FFA300',
+                    colorBottom: '#FF6000',
                     icon: 'fas fa-home fa-fw',
                     route: 'home'
                 }, {
-                    name: 'Funktionen',
+                    name: 'Räume',
                     colorTop: '#FFEE00',
-                    colorBottom: '#FFA300',
-                    icon: 'fas fa-bus fa-fw',
-                    route: 'funktionen'
+                    colorBottom: '#FF6000',
+                    icon: 'fas fa-door-closed fa-fw',
+                    route: 'rooms'
                 }, {
                     name: 'Funktionen',
                     colorTop: '#FFEE00',
-                    colorBottom: '#FFA300',
-                    icon: 'fas fa-bus fa-fw',
-                    route: 'funktionen'
+                    colorBottom: '#FF6000',
+                    icon: 'fas fa-cogs fa-fw',
+                    route: 'functions'
                 }, {
-                    name: 'Funktionen',
-                    colorTop: '#FFEE00',
-                    colorBottom: '#FFA300',
-                    icon: 'fas fa-bus fa-fw',
-                    route: 'funktionen'
-                }, {
-                    name: 'Funktionen',
-                    colorTop: '#FFEE00',
-                    colorBottom: '#FFA300',
-                    icon: 'fas fa-bus fa-fw',
-                    route: 'funktionen'
-                }, {
-                    name: 'Funktionen',
-                    colorTop: '#FFEE00',
-                    colorBottom: '#FFA300',
-                    icon: 'fas fa-bus fa-fw',
-                    route: 'funktionen'
+                    name: 'Platzhalter',
+                    colorTop: '#BBBBBB',
+                    colorBottom: '#777777',
+                    icon: 'far fa-image fa-fw',
+                    route: 'placeholder'
                 }
             ]
         }
@@ -147,7 +135,7 @@ export default {
 
     .app-wrapper {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
         width: 100%;
         max-width: 720px;
         z-index: 11;

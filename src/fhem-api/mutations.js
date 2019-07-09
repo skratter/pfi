@@ -1,6 +1,9 @@
 import Vue from 'vue'
 
 const mutations = {
+    setDemo (state, mode) {
+        Vue.set(state, 'demo', mode)
+    },
     setBar (state, bar) {
         Vue.set(state, 'bar', bar)
     },

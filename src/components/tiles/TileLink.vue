@@ -61,7 +61,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-width: 200px;
+    min-width: 100px;
     margin: 20px;
     transition: 0.1s filter linear;
     -webkit-transition: 0.1s filter linear;

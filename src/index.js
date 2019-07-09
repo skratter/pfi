@@ -5,14 +5,28 @@ import vuetify from '@/vuetify.js'
 
 import '@/external/inobounce.js'
 import '../assets/app.scss'
+import settings from '@/settings'
 
 import bar from '@/components/Bar'
 import TilePlug from '@/components/tiles/TilePlug'
 import TileLink from '@/components/tiles/TileLink'
 import TileLight from '@/components/tiles/TileLight'
 
+// import socket from '@/fhem-api/socket.js'
 import store from '@/fhem-api/store.js'
-import socket from '@/fhem-api/socket.js'
+
+if (!settings.demo) {
+    import('@/fhem-api/socket.js')
+        .then((s) => {
+            const socket = s.default
+            // Initialize Socket
+            store.commit('setSocket', socket)
+            store.dispatch('getAllValues')
+            socket.on('value', function (data) {
+                store.commit('setStatus', data)
+            })
+        })
+}
 
 Vue.component('bar', bar)
 Vue.component('tile-plug', TilePlug)
@@ -28,11 +42,14 @@ if ('serviceWorker' in navigator) {
 }
 
 // Initialize Socket
-store.commit('setSocket', socket)
-store.dispatch('getAllValues')
-socket.on('value', function (data) {
-    store.commit('setStatus', data)
-})
+// store.commit('setSocket', socket)
+// store.dispatch('getAllValues')
+// socket.on('value', function (data) {
+//     store.commit('setStatus', data)
+// })
+// console.log(socket)
+
+store.commit('setDemo', settings.demo)
 
 /* eslint-disable-next-line no-new */
 new Vue({

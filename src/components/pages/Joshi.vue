@@ -2,22 +2,19 @@
     <div>
         <div>
             <h1 style="color:white;">
-                Home !!!
+                Kinderzimmer (Joshua)
             </h1>
 
-            <button @click="getAllValues()">
-                Get JsonList from Server !
-            </button>
-
             <v-container fluid grid-list-xl>
-                <v-layout row wrap justify-center>
-                    <p>Platzhalter</p>
+                <v-layout
+                    row
+                    wrap
+                    justify-center
+                >
+                    <tile-light device-name="HUEDevice1"/>
+                    <tile-plug device-name="HUEDevice2"/>
                 </v-layout>
             </v-container>
-
-            <router-link :to="{ name: 'functions' }">
-                Link Funktionen
-            </router-link>
         </div>
     </div>
 </template>
@@ -25,7 +22,9 @@
 <script>
 export default {
     data: () => {
-        return {}
+        return {
+
+        }
     },
     // sockets: {
     //     connect () {
