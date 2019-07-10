@@ -161,7 +161,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-width: 360px;
+    width: 360px;
     height: 120px;
     margin: 20px;
     transition: transform 0.2s ease-in-out;

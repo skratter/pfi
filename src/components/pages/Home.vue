@@ -1,24 +1,29 @@
 <template>
     <div>
-        <div>
-            <h1 style="color:white;">
-                Home !!!
-            </h1>
-
-            <button @click="getAllValues()">
-                Get JsonList from Server !
-            </button>
-
-            <v-container fluid grid-list-xl>
+        <v-container fluid grid-list-xl>
+            <v-layout
+                row
+                wrap
+                justify-center
+            >
                 <v-layout row wrap justify-center>
-                    <p>Platzhalter</p>
+                    <v-card color="rgba(0,0,0,.4)">
+                        <v-card-title class="white--text">
+                            Eingeschaltete Geräte
+                        </v-card-title>
+                        <tile-light device-name="HUEDevice1"/>
+                        <tile-plug device-name="HUEDevice2"/>
+                    </v-card>
                 </v-layout>
-            </v-container>
 
-            <router-link :to="{ name: 'functions' }">
-                Link Funktionen
-            </router-link>
-        </div>
+                <v-card color="rgba(0,0,0,.4)" class="mt-3">
+                    <v-card-title class="white--text">
+                        BVG
+                    </v-card-title>
+                    <list-bvg/>
+                </v-card>
+            </v-layout>
+        </v-container>
     </div>
 </template>
 
@@ -36,9 +41,7 @@ export default {
         this.$store.commit('setTitle', this.title)
     },
     methods: {
-        // getAllValues () {
-        //     this.$store.dispatch('getJson', '')
-        // }
+
     }
 }
 </script>

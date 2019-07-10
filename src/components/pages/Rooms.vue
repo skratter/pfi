@@ -1,10 +1,6 @@
 <template>
     <div>
         <div>
-            <h1 style="color:white;">
-                Räume
-            </h1>
-
             <v-container fluid grid-list-xl>
                 <v-layout
                     row
@@ -34,8 +30,8 @@ export default {
             apps: [
                 {
                     name: 'Kinderzimmer',
-                    colorTop: '#FFEE00',
-                    colorBottom: '#FF6000',
+                    colorTop: 'rgba(255, 238, 0, 1)',
+                    colorBottom: 'rgba(255, 96, 0, 1)',
                     icon: 'fas fa-baby fa-fw',
                     route: 'joshi'
                 }

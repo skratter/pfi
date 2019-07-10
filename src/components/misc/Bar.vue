@@ -4,14 +4,12 @@
             <router-link :to="{ name: 'home' }">
                 <v-img
                     src="/img/logo.png"
-                    lazy-src="/img/lazy.png"
-                    aspect-ratio="1"
                     max-width="50"
                     max-height="50"
                     class="mr-3 ml-2"
                 />
             </router-link>
-            <v-toolbar-title class="ml-3">
+            <v-toolbar-title>
                 {{ title }}
             </v-toolbar-title>
 

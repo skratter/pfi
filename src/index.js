@@ -11,24 +11,11 @@ import '@/external/inobounce.js'
 import '../assets/app.scss'
 import '@/components/components.js'
 
-// if (!settings.demo) {
-//     import('@/fhem-api/socket.js')
-//         .then((s) => {
-//             const socket = s.default
-//             // Initialize Socket
-//             store.commit('setSocket', socket)
-//             store.dispatch('getAllValues')
-//             socket.on('value', function (data) {
-//                 store.commit('setStatus', data)
-//             })
-//         })
-// }
-
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
     // Start Service-Worker
     // window.addEventListener('load', () => {
-    // navigator.serviceWorker.register('/service-worker.js')
+    //     navigator.serviceWorker.register('/service-worker.js')
     // })
 }
 

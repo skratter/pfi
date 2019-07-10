@@ -29,17 +29,11 @@ export default {
         this.$store.commit('setTitle', this.title)
     },
     methods: {
-        // getAllValues () {
-        //     this.$store.dispatch('getJson', '')
-        // }
+
     }
 }
 </script>
 
 <style lang="scss" scoped>
-.item {
-  min-height: 50px;
-  min-width: 80px;
-  margin: 10px;
-}
+
 </style>
