@@ -2,15 +2,12 @@ import Vue from 'vue'
 import App from '@/App.vue'
 import router from '@/router.js'
 import vuetify from '@/vuetify.js'
+import settings from '@/settings'
+import axios from 'axios'
 
 import '@/external/inobounce.js'
 import '../assets/app.scss'
-import settings from '@/settings'
-
-import bar from '@/components/Bar'
-import TilePlug from '@/components/tiles/TilePlug'
-import TileLink from '@/components/tiles/TileLink'
-import TileLight from '@/components/tiles/TileLight'
+import '@/components/components.js'
 
 // import socket from '@/fhem-api/socket.js'
 import store from '@/fhem-api/store.js'
@@ -28,11 +25,6 @@ if (!settings.demo) {
         })
 }
 
-Vue.component('bar', bar)
-Vue.component('tile-plug', TilePlug)
-Vue.component('tile-link', TileLink)
-Vue.component('tile-light', TileLight)
-
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {
     // Start Service-Worker
@@ -43,6 +35,7 @@ if ('serviceWorker' in navigator) {
 
 store.commit('setDemo', settings.demo)
 
+Vue.prototype.$axios = axios
 /* eslint-disable-next-line no-new */
 new Vue({
     el: '#app',

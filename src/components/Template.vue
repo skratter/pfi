@@ -6,11 +6,15 @@
 
 <script>
 export default {
+    props: {},
     data: () => {
         return { }
     },
     computed: { },
-    mounted: () => { }
+    mounted () { },
+    beforeCreate () {},
+    created () {},
+    methods: {}
 }
 </script>
 
