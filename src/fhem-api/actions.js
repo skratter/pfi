@@ -1,4 +1,4 @@
-const actions = {
+export default {
     // Get All Values from FHEM
     getAllValues ({ commit }) {
         commit('getAllValues')
@@ -12,5 +12,3 @@ const actions = {
         commit('getJson', device)
     }
 }
-
-export default actions

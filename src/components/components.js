@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import bar from '@/components/Bar'
+import bar from '@/components/misc/Bar'
 import TilePlug from '@/components/tiles/TilePlug'
 import TileLink from '@/components/tiles/TileLink'
 import TileLight from '@/components/tiles/TileLight'

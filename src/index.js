@@ -4,26 +4,25 @@ import router from '@/router.js'
 import vuetify from '@/vuetify.js'
 import settings from '@/settings'
 import axios from 'axios'
+import store from '@/store/store.js'
 
+import '@/fhem-api/socket.js'
 import '@/external/inobounce.js'
 import '../assets/app.scss'
 import '@/components/components.js'
 
-// import socket from '@/fhem-api/socket.js'
-import store from '@/fhem-api/store.js'
-
-if (!settings.demo) {
-    import('@/fhem-api/socket.js')
-        .then((s) => {
-            const socket = s.default
-            // Initialize Socket
-            store.commit('setSocket', socket)
-            store.dispatch('getAllValues')
-            socket.on('value', function (data) {
-                store.commit('setStatus', data)
-            })
-        })
-}
+// if (!settings.demo) {
+//     import('@/fhem-api/socket.js')
+//         .then((s) => {
+//             const socket = s.default
+//             // Initialize Socket
+//             store.commit('setSocket', socket)
+//             store.dispatch('getAllValues')
+//             socket.on('value', function (data) {
+//                 store.commit('setStatus', data)
+//             })
+//         })
+// }
 
 // Check that service workers are supported
 if ('serviceWorker' in navigator) {

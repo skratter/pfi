@@ -1,15 +1,9 @@
 import Vue from 'vue'
 
-const mutations = {
-    setDemo (state, mode) {
-        Vue.set(state, 'demo', mode)
-    },
-    setTitle (state, title) {
-        Vue.set(state, 'title', title)
-    },
-    setBar (state, bar) {
-        Vue.set(state, 'bar', bar)
-    },
+export default {
+    /***************************************************************
+     * From here we got IO Functions to interact with FHEM Server. *
+     ***************************************************************/
     setSocket (state, io) {
         Vue.set(state, 'io', io)
     },
@@ -34,6 +28,13 @@ const mutations = {
             })
         }
     },
+    getDevice (state, device) {
+        console.log('getDevice')
+        console.log(state)
+        console.log(device)
+        if (typeof state[device] === 'undefined') { return '' }
+        return state[device]
+    }
     // getJson (state, device) {
     //     state.io.emit('JsonList2', device, function (data) {
     //         console.log(data)
@@ -45,13 +46,4 @@ const mutations = {
     //     }
     //     return undefined
     // },
-    getDevice (state, device) {
-        console.log('getDevice')
-        console.log(state)
-        console.log(device)
-        if (typeof state[device] === 'undefined') { return '' }
-        return state[device]
-    }
 }
-
-export default mutations
