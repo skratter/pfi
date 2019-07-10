@@ -1,14 +1,36 @@
 <template>
-    <div class="bar-container">
-        <h2 style="margin-left: 10px;color: white; line-height: 50px;">
-            {{ title }}
-        </h2>
-        <v-icon v-if="!showNav" class="nav-icon" @click="showNavbar">
-            far fa-bars fa-fw
-        </v-icon>
-        <v-icon v-else class="nav-icon" @click="hideNavbar">
-            far fa-times fa-fw
-        </v-icon>
+    <div>
+        <v-toolbar dark color="rgba(0,0,0,.4)">
+            <router-link :to="{ name: 'home' }">
+                <v-img
+                    src="/img/logo.png"
+                    lazy-src="/img/lazy.png"
+                    aspect-ratio="1"
+                    max-width="50"
+                    max-height="50"
+                    class="mr-3 ml-2"
+                />
+            </router-link>
+            <v-toolbar-title class="ml-3">
+                {{ title }}
+            </v-toolbar-title>
+
+            <v-spacer/>
+
+            <v-btn icon class="mr-2" @click="reload()">
+                <v-icon>far fa-redo-alt fa-fw</v-icon>
+            </v-btn>
+            <v-app-bar-nav-icon class="nav-icon mr-1">
+                <v-btn icon>
+                    <v-icon v-if="!showNav" @click="showNavbar">
+                        far fa-bars fa-fw
+                    </v-icon>
+                    <v-icon v-else @click="hideNavbar">
+                        far fa-times fa-fw
+                    </v-icon>
+                </v-btn>
+            </v-app-bar-nav-icon>
+        </v-toolbar>
 
         <transition name="fade">
             <div v-if="showNav" class="nav-container">
@@ -87,6 +109,9 @@ export default {
         }
     },
     methods: {
+        reload () {
+            this.$router.go()
+        },
         showNavbar () {
             this.$store.commit('setBar', true)
             setTimeout(() => {
@@ -103,19 +128,21 @@ export default {
 
 <style lang="scss" scoped>
 .bar-container {
-    width: 100%;
     height: 50px;
-    background: rgba(0,0,0,.4);
+    background: rgba(0, 0, 0, 0.4);
 }
+app-logo {
+    display: inline-block;
+}
+
 .nav-icon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 10px;
-    z-index: 999;
-    color: #ffffff;
-    font-size: 2rem;
+    z-index: 1000;
     cursor: pointer;
+
+    i {
+        z-index: 1000;
+        font-size: 2rem;
+    }
 }
 
 .nav-container {

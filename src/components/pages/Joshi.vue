@@ -1,10 +1,6 @@
 <template>
     <div>
         <div>
-            <h1 style="color:white;">
-                Kinderzimmer (Joshua)
-            </h1>
-
             <v-container fluid grid-list-xl>
                 <v-layout
                     row
