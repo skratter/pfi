@@ -2,16 +2,9 @@
     <div>
         <v-toolbar dark color="rgba(0,0,0,.4)">
             <router-link :to="{ name: 'home' }">
-                <v-img
-                    src="/img/logo.png"
-                    max-width="50"
-                    max-height="50"
-                    class="mr-3 ml-2"
-                />
+                <v-img src="/img/logo.png" max-width="50" max-height="50" class="mr-3 ml-2"/>
             </router-link>
-            <v-toolbar-title>
-                {{ title }}
-            </v-toolbar-title>
+            <v-toolbar-title>{{ title }}</v-toolbar-title>
 
             <v-spacer/>
 
@@ -50,6 +43,7 @@
 
 <script>
 import { setTimeout } from 'timers'
+import inobounce from '@/external/inobounce.js'
 export default {
     data: () => {
         return {
@@ -106,9 +100,12 @@ export default {
             }
         }
     },
+    mounted () {
+        inobounce.enable()
+    },
     methods: {
         reload () {
-            this.$router.go()
+            window.location.reload(true)
         },
         showNavbar () {
             this.$store.commit('setBar', true)
@@ -125,14 +122,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.bar-container {
-    height: 50px;
-    background: rgba(0, 0, 0, 0.4);
-}
-app-logo {
-    display: inline-block;
-}
-
 .nav-icon {
     z-index: 1000;
     cursor: pointer;

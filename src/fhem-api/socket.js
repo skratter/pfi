@@ -20,14 +20,9 @@ if (!settings.demo) {
         console.log(data)
     })
 
-    import('@/fhem-api/socket.js')
-        .then((s) => {
-            const socket = s.default
-            // Initialize Socket
-            store.commit('setSocket', socket)
-            store.dispatch('getAllValues')
-            socket.on('value', function (data) {
-                store.commit('setStatus', data)
-            })
-        })
+    store.commit('setSocket', socket)
+    store.dispatch('getAllValues')
+    socket.on('value', function (data) {
+        store.commit('setStatus', data)
+    })
 }

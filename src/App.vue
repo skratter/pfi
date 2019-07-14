@@ -10,7 +10,7 @@
 <script>
 export default {
     data: () => ({}),
-    computed: { },
+    computed: {},
     created: () => {
         document.addEventListener('touchstart', function addtouchclass (e) { // first time user touches the screen
             document.documentElement.classList.add('can-touch') // add "can-touch" class to document root using classList API
@@ -24,7 +24,7 @@ export default {
 <style lang="scss" scoped>
 #myApp {
     background-color: #000000;
-    background-image: url("/img/bg.jpg");
+    background-image: url('/img/bg.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

@@ -112,9 +112,15 @@ export default {
                 this.name = 'Demo'
             } else {
                 this.name = this.device.Attributes.alias
-                console.log(this.device)
                 if (this.device.Readings.state.Value === 'off') {
                     this.slider = 0
+                    this.colorTop = this.colorOffTop
+                    this.colorBottom = this.colorOffBottom
+                    this.icon = 'far fa-lightbulb'
+                } else {
+                    this.colorTop = this.colorOnTop
+                    this.colorBottom = this.colorOnBottom
+                    this.icon = 'fas fa-lightbulb-on'
                 }
             }
         }

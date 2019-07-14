@@ -1,8 +1,5 @@
-html {
-    overflow: auto;
-}
-
 body {
     user-select: none;
-    overflow: hidden;
+    overflow: auto;
+    -webkit-overflow-scrolling: auto;
 }

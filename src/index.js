@@ -7,7 +7,7 @@ import axios from 'axios'
 import store from '@/store/store.js'
 
 import '@/fhem-api/socket.js'
-import '@/external/inobounce.js'
+// import '@/external/inobounce.js'
 import '../assets/app.scss'
 import '@/components/components.js'
 
