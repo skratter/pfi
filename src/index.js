@@ -7,16 +7,17 @@ import axios from 'axios'
 import store from '@/store/store.js'
 
 import '@/fhem-api/socket.js'
-// import '@/external/inobounce.js'
 import '../assets/app.scss'
 import '@/components/components.js'
 
 // Check that service workers are supported
-if ('serviceWorker' in navigator) {
-    // Start Service-Worker
-    // window.addEventListener('load', () => {
-    //     navigator.serviceWorker.register('/service-worker.js')
-    // })
+if (settings.serviceWorker) {
+    if ('serviceWorker' in navigator) {
+        // Start Service-Worker
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+        })
+    }
 }
 
 store.commit('setDemo', settings.demo)

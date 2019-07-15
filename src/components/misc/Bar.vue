@@ -43,7 +43,6 @@
 
 <script>
 import { setTimeout } from 'timers'
-import inobounce from '@/external/inobounce.js'
 export default {
     data: () => {
         return {
@@ -101,7 +100,6 @@ export default {
         }
     },
     mounted () {
-        inobounce.enable()
     },
     methods: {
         reload () {

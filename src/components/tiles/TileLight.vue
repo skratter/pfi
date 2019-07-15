@@ -132,6 +132,7 @@ export default {
 .slider {
     -webkit-appearance: none;
     width: 100%;
+    height: 2rem;
     // background: linear-gradient (to right, yellow, red);
     background: rgba(59, 173, 227, 1);
     background: linear-gradient(
@@ -146,8 +147,8 @@ export default {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: 2rem;
+    height: 2rem;
     background: #ffffff;
     border: 1px solid grey;
     border-radius: 4px;
@@ -155,8 +156,8 @@ export default {
 }
 
 .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
+    width: 2rem;
+    height: 2rem;
     background: #ffffff;
     border-radius: 4px;
     cursor: pointer;
@@ -167,12 +168,12 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 360px;
-    height: 120px;
-    margin: 20px;
+    width: 22rem;
+    height: 7rem;
+    margin: 10px;
     transition: transform 0.2s ease-in-out;
     &:hover {
-        transform: scale(1.1);
+        transform: scale(1.025);
     }
     html.can-touch &:hover {
         transform: none; /* disable hover effect on touch devices */
@@ -196,8 +197,8 @@ export default {
 .text-area {
     position: relative;
     top: 18px;
-    width: 210px;
-    margin-left: -20px;
+    width: 14rem;
+    margin-left: -10px;
 }
 .icon-area,
 .text-area,

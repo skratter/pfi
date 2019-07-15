@@ -1,5 +1,9 @@
+html, body {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 body {
     user-select: none;
-    overflow: auto;
-    -webkit-overflow-scrolling: auto;
+    font-size: 14px;
 }

@@ -112,8 +112,7 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    min-width: 100px;
-    margin: 20px;
+    margin: 0.5rem;
     transition: 0.1s filter linear;
     -webkit-transition: 0.1s filter linear;
 
@@ -121,8 +120,8 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 80px;
-        height: 80px;
+        width: 5rem;
+        height: 5rem;
         border-radius: 4px;
         box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.4);
         cursor: pointer;
@@ -144,7 +143,7 @@ export default {
     .app-title {
         color: #fff;
         font-size: 1.5rem;
-        padding-top: 10px;
+        padding-top: 0.5rem;
         cursor: pointer;
     }
 }
