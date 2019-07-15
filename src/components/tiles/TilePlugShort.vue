@@ -1,25 +1,19 @@
 <template>
-    <v-card
-        class="app-card-icon"
-        :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
-    >
-        <v-layout row wrap>
-            <div class="text-area">
-                <v-card-title primary-title>
-                    <div>
-                        <div class="headline white--text">
-                            {{ name }}
-                        </div>
-                    </div>
-                </v-card-title>
-            </div>
-            <div class="switch-area">
-                <v-icon class="white--text icon" @click="switchDevice()">
-                    far fa-plug fa-fw
-                </v-icon>
-            </div>
-        </v-layout>
-    </v-card>
+    <div class="app-card-icon">
+        <div
+            :class="{ 'click-app': clickApp }"
+            class="app-card"
+            :style="{
+                'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')'
+            }"
+            @click="switchDevice()"
+        >
+            <v-icon>far fa-plug fa-fw</v-icon>
+        </div>
+        <div class="app-title" @click="switchDevice()">
+            {{ name }}
+        </div>
+    </div>
 </template>
 
 <script>
@@ -118,40 +112,43 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 18rem;
-    height: 4rem;
-    margin: 0.6rem;
-    transition: transform 0.2s ease-in-out;
-    &:hover {
-        transform: scale(1.025);
+    margin: 0.5rem;
+    transition: 0.1s filter linear;
+    -webkit-transition: 0.1s filter linear;
+
+    .app-card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 4px;
+        box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+
+        i {
+            color: #ffffff;
+            font-size: 3rem;
+        }
+
+        &:hover {
+            transform: scale(1.1);
+        }
+        html.can-touch &:hover {
+            transform: none; /* disable hover effect on touch devices */
+        }
     }
-    html.can-touch &:hover {
-        transform: none; /* disable hover effect on touch devices */
+
+    .app-title {
+        color: #fff;
+        font-size: 1.5rem;
+        padding-top: 0.5rem;
+        cursor: pointer;
     }
-}
-.icon {
-    position: relative;
-    top: 0.7rem;
-    margin: 0.7rem;
-    margin-left: 0.325rem;
-    font-size: 3rem;
-}
-.text-area {
-    position: relative;
-    top: 0.8rem;
-    width: 14rem;
 }
 
-.switch-area {
-    position: relative;
-    top: -0.1rem;
-}
-
-@media (max-width: 415px) {
-    .app-card-icon {
-        width: 100vw;
-        margin-left: 0;
-        margin-right: 0;
-    }
+.click-app {
+    filter: brightness(0.8);
 }
 </style>

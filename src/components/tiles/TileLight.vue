@@ -1,40 +1,35 @@
 <template>
-    <div class>
-        <v-card
-            class="app-card-icon"
-            :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
-        >
-            <v-layout row wrap>
-                <div class="icon-area">
-                    <v-icon class="white--text icon">
-                        {{ icon }} fa-fw
-                    </v-icon>
-                </div>
-                <div class="text-area">
-                    <v-card-title primary-title>
-                        <div>
-                            <div class="headline white--text" style="padding-top: 15px;">
-                                {{ name }}
-                            </div>
+    <v-card
+        class="app-card-icon"
+        :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
+    >
+        <v-layout row wrap>
+            <div class="text-area">
+                <v-card-title primary-title>
+                    <div>
+                        <div class="headline white--text">
+                            {{ name }}
                         </div>
-                    </v-card-title>
-                </div>
-                <div class="switch-area">
-                    <v-switch v-model="onoff" color="white" class="switch"/>
-                </div>
-            </v-layout>
+                    </div>
+                </v-card-title>
+            </div>
+            <div class="switch-area">
+                <v-icon class="white--text icon" @click="onoff = !onoff">
+                    {{ icon }} fa-fw
+                </v-icon>
+            </div>
+        </v-layout>
 
-            <input
-                id="myRange"
-                v-model="slider"
-                type="range"
-                min="0"
-                max="100"
-                step="10"
-                class="slider"
-            />
-        </v-card>
-    </div>
+        <input
+            id="myRange"
+            v-model="slider"
+            type="range"
+            min="0"
+            max="100"
+            step="10"
+            class="slider"
+        />
+    </v-card>
 </template>
 
 <script>
@@ -132,7 +127,7 @@ export default {
 .slider {
     -webkit-appearance: none;
     width: 100%;
-    height: 2rem;
+    height: 2.5rem;
     // background: linear-gradient (to right, yellow, red);
     background: rgba(59, 173, 227, 1);
     background: linear-gradient(
@@ -147,8 +142,8 @@ export default {
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5em;
     background: #ffffff;
     border: 1px solid grey;
     border-radius: 4px;
@@ -156,8 +151,8 @@ export default {
 }
 
 .slider::-moz-range-thumb {
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
     background: #ffffff;
     border-radius: 4px;
     cursor: pointer;
@@ -168,9 +163,9 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 22rem;
-    height: 7rem;
-    margin: 10px;
+    width: 18rem;
+    height: 6rem;
+    margin: 0.6rem;
     transition: transform 0.2s ease-in-out;
     &:hover {
         transform: scale(1.025);
@@ -180,30 +175,29 @@ export default {
     }
 }
 
-.switch {
-    position: relative;
-    top: 18px;
-    transform: scale(1.4);
-}
 .icon {
     position: relative;
-    top: 10px;
-    margin: 10px;
+    top: 0.7rem;
+    margin: 0.7rem;
+    margin-left: 0.325rem;
     font-size: 3rem;
-}
-.icon-area {
-    margin-right: 10px;
 }
 .text-area {
     position: relative;
-    top: 18px;
+    top: 0.8rem;
     width: 14rem;
-    margin-left: -10px;
 }
-.icon-area,
-.text-area,
+
 .switch-area {
     position: relative;
-    top: 18px;
+    top: -0.1rem;
+}
+
+@media (max-width: 415px) {
+    .app-card-icon {
+        width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
+    }
 }
 </style>

@@ -2,19 +2,13 @@
     <div>
         <v-container fluid grid-list-xl>
             <v-layout
-                row
+                column
                 wrap
                 justify-center
+                style="margin: 0;"
             >
-                <v-layout row wrap justify-center>
-                    <v-card color="rgba(0,0,0,.4)">
-                        <v-card-title class="white--text">
-                            Eingeschaltete Geräte
-                        </v-card-title>
-                        <tile-light device-name="HUEDevice1"/>
-                        <tile-plug device-name="HUEDevice2"/>
-                    </v-card>
-                </v-layout>
+                <tile-light device-name="HUEDevice1"/>
+                <tile-plug device-name="HUEDevice2"/>
 
                 <v-card color="rgba(0,0,0,.4)" class="mt-3">
                     <v-card-title class="white--text">

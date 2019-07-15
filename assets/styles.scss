@@ -1,9 +1,17 @@
-html, body {
-    overflow-y: scroll;
+html,
+body {
+    // overflow-y: scroll;
     overflow-x: hidden;
 }
 
 body {
     user-select: none;
     font-size: 14px;
+}
+
+@media (max-width: 415px) {
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
 }

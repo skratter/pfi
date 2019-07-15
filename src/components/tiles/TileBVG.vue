@@ -55,7 +55,7 @@ export default {
     flex-wrap: wrap !important;
     flex-direction: row !important;
     position: relative;
-    margin: 20px;
+    margin: 0.6rem;
     color: #e9ecef;
     width: 820px;
     word-wrap: break-word;
@@ -65,7 +65,7 @@ export default {
 .bvg-header {
     background: #ddc919;
     color: #000000;
-    padding: 0.75rem 1.25rem;
+    padding: 1rem 1.25rem;
     margin-bottom: 0;
 }
 .bvg-block {
@@ -97,24 +97,31 @@ export default {
         display: block !important;
     }
 }
-@media (max-width: 480px){
-        .bvg-card {
-        width: 320px;
-    }
-}
-@media (min-width: 481px){
-        .bvg-card {
-        width: 480px;
-    }
-}
-@media (min-width: 720px){
-        .bvg-card {
-        width: 700px;
-    }
-}
-@media (min-width: 830px) {
+@media (max-width: 415px) {
     .bvg-card {
-        width: 820px;
+        width: 100vw;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
+// @media (max-width: 480px){
+//         .bvg-card {
+//         width: 320px;
+//     }
+// }
+// @media (min-width: 481px){
+//         .bvg-card {
+//         width: 480px;
+//     }
+// }
+// @media (min-width: 720px){
+//         .bvg-card {
+//         width: 700px;
+//     }
+// }
+// @media (min-width: 830px) {
+//     .bvg-card {
+//         width: 820px;
+//     }
+// }
 </style>
