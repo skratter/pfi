@@ -2,11 +2,15 @@
     <div>
         <v-container fluid grid-list-xl>
             <v-layout
-                column
+                row
                 wrap
                 justify-center
                 style="margin: 0;"
             >
+                <tile-light device-name="HUEDevice1"/>
+                <tile-plug device-name="HUEDevice2"/>
+                <tile-light device-name="HUEDevice1"/>
+                <tile-plug device-name="HUEDevice2"/>
                 <tile-light device-name="HUEDevice1"/>
                 <tile-plug device-name="HUEDevice2"/>
 

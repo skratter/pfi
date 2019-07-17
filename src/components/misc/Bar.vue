@@ -67,6 +67,12 @@ export default {
                     icon: 'fas fa-cogs fa-fw',
                     route: 'functions'
                 }, {
+                    name: 'Test',
+                    colorTop: '#FFEE00',
+                    colorBottom: '#FF6000',
+                    icon: 'far fa-vial fa-fw',
+                    route: 'test'
+                }, {
                     name: 'Platzhalter',
                     colorTop: '#BBBBBB',
                     colorBottom: '#777777',
