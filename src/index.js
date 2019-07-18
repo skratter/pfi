@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from '@/App.vue'
 import router from '@/router.js'
+import { BootstrapVue } from 'bootstrap-vue'
 import vuetify from '@/vuetify.js'
 import settings from '@/settings'
 import axios from 'axios'
@@ -9,6 +10,8 @@ import store from '@/store/store.js'
 import '@/fhem-api/socket.js'
 import '../assets/app.scss'
 import '@/components/components.js'
+
+Vue.use(BootstrapVue)
 
 // Check that service workers are supported
 if (settings.serviceWorker) {
