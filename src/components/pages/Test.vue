@@ -1,7 +1,9 @@
 <template>
     <div class="grid">
         <div class="grid-item orange">
-            <v-icon>fa fa-bus fa-fw</v-icon>
+            <v-icon x-large color="white">
+                mdi-bus
+            </v-icon>
         </div>
         <div class="grid-item red"></div>
         <div class="grid-item green"></div>

@@ -73,6 +73,18 @@ module.exports = {
                 ]
             },
             {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'style-loader' // creates style nodes from JS strings
+                    },
+                    {
+                        loader: 'css-loader' // translates CSS into CommonJS
+                        // options: { url: false }
+                    }
+                ]
+            },
+            {
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                 use: [{
                     loader: 'file-loader',
