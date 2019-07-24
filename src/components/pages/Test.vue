@@ -5,6 +5,14 @@
                 mdi-bus
             </v-icon>
         </div>
+        <tile-link
+            name="Test Link"
+            color-top="red"
+            color-bottom="yellow"
+            icon="mdi-bus"
+            route="home"
+            class="grid-item"
+        />
         <div class="grid-item red"></div>
         <div class="grid-item green"></div>
         <div class="grid-item yellow"></div>
@@ -17,8 +25,6 @@
         <div class="grid-item yellow"></div>
         <div class="grid-item cyan"></div>
         <div class="grid-item red"></div>
-        <div class="grid-item orange"></div>
-        <div class="grid-item blue"></div>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-toolbar dark color="rgba(0,0,0,.4)">
+        <v-toolbar dark color="rgba(0,0,0,.4)" style="z-index: 1000;">
             <router-link :to="{ name: 'home' }">
                 <v-img src="/img/logo.png" max-width="50" max-height="50" class="mr-3 ml-2"/>
             </router-link>
@@ -9,15 +9,15 @@
             <v-spacer/>
 
             <v-btn icon class="mr-2" @click="reload()">
-                <v-icon>far fa-redo-alt fa-fw</v-icon>
+                <v-icon>mdi-reload</v-icon>
             </v-btn>
             <v-app-bar-nav-icon class="nav-icon mr-1">
                 <v-btn icon>
                     <v-icon v-if="!showNav" @click="showNavbar">
-                        far fa-bars fa-fw
+                        mdi-menu
                     </v-icon>
                     <v-icon v-else @click="hideNavbar">
-                        far fa-times fa-fw
+                        mdi-close
                     </v-icon>
                 </v-btn>
             </v-app-bar-nav-icon>
@@ -127,13 +127,7 @@ export default {
 
 <style lang="scss" scoped>
 .nav-icon {
-    z-index: 1000;
     cursor: pointer;
-
-    i {
-        z-index: 1000;
-        font-size: 2rem;
-    }
 }
 
 .nav-container {
