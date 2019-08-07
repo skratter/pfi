@@ -1,5 +1,20 @@
 <template>
-    <v-card
+    <div class="plug-tile" :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }">
+        <div class="switch-area" @click="onoff = !onoff">
+            <v-icon class="white--text icon">
+                {{ icon }}
+            </v-icon>
+        </div>
+        <div class="text-area">
+            <div class="white--text">
+                Raum
+            </div>
+            <div class="headline white--text">
+                {{ name }}
+            </div>
+        </div>
+    </div>
+    <!-- <v-card
         class="app-card-icon"
         :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
     >
@@ -29,7 +44,7 @@
             step="10"
             class="slider"
         />
-    </v-card>
+    </v-card> -->
 </template>
 
 <script>
@@ -50,7 +65,9 @@ export default {
             colorOffTop: 'rgba(0,0,0,0.6)',
             colorOffBottom: 'rgba(0,0,0,0.6)',
 
-            icon: 'far fa-lightbulb-slash',
+            icon: 'mdi-lightbulb-off-outline',
+            iconOn: 'mdi-lightbulb',
+            iconOff: 'mdi-lightbulb-outline',
 
             name: 'No Alias defined',
             slider: 50,
@@ -78,14 +95,14 @@ export default {
                 this.slider = 0
                 this.colorTop = this.colorOffTop
                 this.colorBottom = this.colorOffBottom
-                this.icon = 'far fa-lightbulb'
+                this.icon = this.iconOff
             } else {
                 if (this.slider === 0) {
                     this.slider = 100
                 }
                 this.colorTop = this.colorOnTop
                 this.colorBottom = this.colorOnBottom
-                this.icon = 'fas fa-lightbulb-on'
+                this.icon = this.iconOn
             }
         }
     },
@@ -111,11 +128,11 @@ export default {
                     this.slider = 0
                     this.colorTop = this.colorOffTop
                     this.colorBottom = this.colorOffBottom
-                    this.icon = 'far fa-lightbulb'
+                    this.icon = this.iconOff
                 } else {
                     this.colorTop = this.colorOnTop
                     this.colorBottom = this.colorOnBottom
-                    this.icon = 'fas fa-lightbulb-on'
+                    this.icon = this.iconOn
                 }
             }
         }
@@ -158,46 +175,67 @@ export default {
     cursor: pointer;
 }
 
-.app-card-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 18rem;
-    height: 6rem;
-    margin: 0.6rem;
-    transition: transform 0.2s ease-in-out;
-    &:hover {
-        transform: scale(1.025);
-    }
-    html.can-touch &:hover {
-        transform: none; /* disable hover effect on touch devices */
-    }
-}
-
-.icon {
-    position: relative;
-    top: 0.7rem;
-    margin: 0.7rem;
-    margin-left: 0.325rem;
-    font-size: 3rem;
-}
-.text-area {
-    position: relative;
-    top: 0.8rem;
-    width: 14rem;
-}
-
 .switch-area {
     position: relative;
-    top: -0.1rem;
-}
+    // margin: 10px auto;
+    line-height: 165px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
 
-@media (max-width: 415px) {
-    .app-card-icon {
-        width: 100vw;
-        margin-left: 0;
-        margin-right: 0;
+    .icon {
+        // margin-top: 30px;
+        font-size: 5rem;
     }
 }
+
+.text-area {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    font-size: 10pt;
+}
+
+// .app-card-icon {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: column;
+//     width: 18rem;
+//     height: 6rem;
+//     margin: 0.6rem;
+//     transition: transform 0.2s ease-in-out;
+//     &:hover {
+//         transform: scale(1.025);
+//     }
+//     html.can-touch &:hover {
+//         transform: none; /* disable hover effect on touch devices */
+//     }
+// }
+
+// .icon {
+//     position: relative;
+//     top: 0.7rem;
+//     margin: 0.7rem;
+//     margin-left: 0.325rem;
+//     font-size: 3rem;
+// }
+// .text-area {
+//     position: relative;
+//     top: 0.8rem;
+//     width: 14rem;
+// }
+
+// .switch-area {
+//     position: relative;
+//     top: -0.1rem;
+// }
+
+// @media (max-width: 415px) {
+//     .app-card-icon {
+//         width: 100vw;
+//         margin-left: 0;
+//         margin-right: 0;
+//     }
+// }
 </style>

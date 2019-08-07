@@ -14,7 +14,8 @@
             class="grid-item"
         />
         <div class="grid-item red"></div>
-        <div class="grid-item green"></div>
+        <tile-plug device-name="HUEDevice2" class="grid-item"/>
+        <tile-light device-name="HUEDevice1" class="grid-item"/>
         <div class="grid-item yellow"></div>
         <div class="grid-item brown"></div>
         <div class="grid-item grid-item-w blue"></div>
@@ -47,14 +48,26 @@ export default {
 <style lang="scss" scoped>
 .grid {
     display: grid;
-    grid-gap: 0;
+    grid-gap: 5px;
     // grid-auto-flow: dense;
-    grid-template-columns: repeat(auto-fit, 180px);
+    grid-template-columns: repeat(auto-fit, 176px);
     // grid-template-rows: repeat(auto, 180px);
 
     // grid-template-rows: 180px;
-    grid-auto-rows: 180px;
+    grid-auto-rows: 176px;
     margin: 5% auto;
+    position: relative;
+}
+.grid-item {
+    position: relative;
+    // Hover Scale
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+        transform: scale(1.025);
+    }
+    html.can-touch &:hover {
+        transform: none; /* disable hover effect on touch devices */
+    }
 }
 .grid-item-w {
     grid-column: span 2;

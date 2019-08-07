@@ -9,6 +9,11 @@ body {
     font-size: 14px;
 }
 
+.v-card {
+    border-radius: 0;
+    box-shadow: none;
+}
+
 @media (max-width: 415px) {
     .container {
         padding-left: 0;

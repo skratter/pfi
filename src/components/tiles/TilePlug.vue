@@ -1,25 +1,19 @@
 <template>
-    <v-card
-        class="app-card-icon"
-        :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
-    >
-        <v-layout row wrap>
-            <div class="text-area">
-                <v-card-title primary-title>
-                    <div>
-                        <div class="headline white--text">
-                            {{ name }}
-                        </div>
-                    </div>
-                </v-card-title>
+    <div class="plug-tile" :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }">
+        <div class="switch-area" @click="switchDevice()">
+            <v-icon class="white--text icon">
+                {{ icon }}
+            </v-icon>
+        </div>
+        <div class="text-area">
+            <div class="white--text">
+                Raum
             </div>
-            <div class="switch-area">
-                <v-icon class="white--text icon" @click="switchDevice()">
-                    far fa-plug fa-fw
-                </v-icon>
+            <div class="headline white--text">
+                {{ name }}
             </div>
-        </v-layout>
-    </v-card>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -32,6 +26,9 @@ export default {
             demo: false,
             status: false,
 
+            icon: 'mdi-power-plug-off',
+            iconOn: 'mdi-power-plug',
+            iconOff: 'mdi-power-plug-off',
             colorTop: '',
             colorBottom: '',
             colorInactiveTop: 'rgba(204,204,204,0.6)',
@@ -57,6 +54,7 @@ export default {
     created () {
         this.colorTop = this.colorInactiveTop
         this.colorBottom = this.colorInactiveBottom
+        this.icon = this.iconOff
     },
     mounted () {
         this.demo = this.$store.getters.demo
@@ -76,10 +74,12 @@ export default {
                 if (this.device.Readings.state.Value === 'off') {
                     this.colorTop = this.colorOffTop
                     this.colorBottom = this.colorOffBottom
+                    this.icon = this.iconOn
                 }
                 if (this.device.Readings.state.Value === 'on') {
                     this.colorTop = this.colorOnTop
                     this.colorBottom = this.colorOnBottom
+                    this.icon = this.iconOff
                 }
                 this.name = this.device.Attributes.alias
             }
@@ -102,9 +102,11 @@ export default {
                 if (this.status) {
                     this.colorTop = this.colorOnTop
                     this.colorBottom = this.colorOnBottom
+                    this.icon = this.iconOn
                 } else {
                     this.colorTop = this.colorOffTop
                     this.colorBottom = this.colorOffBottom
+                    this.icon = this.iconOff
                 }
             }
         }
@@ -113,45 +115,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-card-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 18rem;
-    height: 4rem;
-    margin: 0.6rem;
-    transition: transform 0.2s ease-in-out;
-    &:hover {
-        transform: scale(1.025);
-    }
-    html.can-touch &:hover {
-        transform: none; /* disable hover effect on touch devices */
-    }
-}
-.icon {
-    position: relative;
-    top: 0.7rem;
-    margin: 0.7rem;
-    margin-left: 0.325rem;
-    font-size: 3rem;
-}
-.text-area {
-    position: relative;
-    top: 0.8rem;
-    width: 14rem;
-}
-
 .switch-area {
     position: relative;
-    top: -0.1rem;
+    // margin: 10px auto;
+    line-height: 165px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+
+    .icon {
+        // margin-top: 30px;
+        font-size: 5rem;
+    }
 }
 
-@media (max-width: 415px) {
-    .app-card-icon {
-        width: 100vw;
-        margin-left: 0;
-        margin-right: 0;
-    }
+.text-area {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    font-size: 10pt;
 }
 </style>
