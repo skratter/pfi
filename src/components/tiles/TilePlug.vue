@@ -74,12 +74,12 @@ export default {
                 if (this.device.Readings.state.Value === 'off') {
                     this.colorTop = this.colorOffTop
                     this.colorBottom = this.colorOffBottom
-                    this.icon = this.iconOn
+                    this.icon = this.iconOff
                 }
                 if (this.device.Readings.state.Value === 'on') {
                     this.colorTop = this.colorOnTop
                     this.colorBottom = this.colorOnBottom
-                    this.icon = this.iconOff
+                    this.icon = this.iconOn
                 }
                 this.name = this.device.Attributes.alias
             }

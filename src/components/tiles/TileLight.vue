@@ -1,6 +1,9 @@
 <template>
-    <div class="plug-tile" :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }">
-        <div class="switch-area" @click="onoff = !onoff">
+    <div
+        class="plug-tile"
+        :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
+    >
+        <div class="switch-area" @mousedown="startTimer" @mouseup="stopTimer">
             <v-icon class="white--text icon">
                 {{ icon }}
             </v-icon>
@@ -13,41 +16,26 @@
                 {{ name }}
             </div>
         </div>
+        <div v-if="showSlider" class="slider-overlay">
+            <v-icon class="close-slider white--text" @click="showSlider = !showSlider">
+                mdi-close
+            </v-icon>
+            <input
+                id="myRange"
+                v-model="slider"
+                type="range"
+                orient="vertical"
+                min="0"
+                max="100"
+                step="10"
+                class="slider"
+            />
+        </div>
     </div>
-    <!-- <v-card
-        class="app-card-icon"
-        :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
-    >
-        <v-layout row wrap>
-            <div class="text-area">
-                <v-card-title primary-title>
-                    <div>
-                        <div class="headline white--text">
-                            {{ name }}
-                        </div>
-                    </div>
-                </v-card-title>
-            </div>
-            <div class="switch-area">
-                <v-icon class="white--text icon" @click="onoff = !onoff">
-                    {{ icon }} fa-fw
-                </v-icon>
-            </div>
-        </v-layout>
-
-        <input
-            id="myRange"
-            v-model="slider"
-            type="range"
-            min="0"
-            max="100"
-            step="10"
-            class="slider"
-        />
-    </v-card> -->
 </template>
 
 <script>
+import { setInterval, clearInterval } from 'timers'
 export default {
     props: {
         deviceName: { type: String, required: true }
@@ -55,6 +43,9 @@ export default {
     data: () => {
         return {
             demo: false,
+            timer: false,
+            count: 0,
+            showSlider: false,
 
             colorTop: '',
             colorBottom: '',
@@ -104,6 +95,14 @@ export default {
                 this.colorBottom = this.colorOnBottom
                 this.icon = this.iconOn
             }
+        },
+        count: function () {
+            if (this.count > 10) {
+                this.count = 0
+                clearInterval(this.timer)
+                this.timer = false
+                this.showSlider = true
+            }
         }
     },
     created () {
@@ -119,6 +118,20 @@ export default {
         }
     },
     methods: {
+        startTimer () {
+            if (!this.timer) {
+                this.timer = setInterval(() => this.count++, 100)
+            }
+        },
+        stopTimer () {
+            clearInterval(this.timer)
+            this.timer = false
+            if (this.count < 10) {
+                console.log(this.count)
+                this.onoff = !this.onoff
+            }
+            this.count = 0
+        },
         setDevice () {
             if (this.demo) {
                 this.name = 'Demo'
@@ -141,38 +154,67 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 2.5rem;
-    // background: linear-gradient (to right, yellow, red);
-    background: rgba(59, 173, 227, 1);
-    background: linear-gradient(
-        45deg,
-        rgba(0, 0, 0, 0.8) 0%,
-        rgba(255, 191, 0, 0.8) 100%
-    );
-    border-radius: 4px;
-    z-index: 10;
-}
+.slider-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
 
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 2.5rem;
-    height: 2.5em;
-    background: #ffffff;
-    border: 1px solid grey;
-    border-radius: 4px;
-    cursor: pointer;
-}
+    .close-slider{
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+    }
 
-.slider::-moz-range-thumb {
-    width: 2.5rem;
-    height: 2.5rem;
-    background: #ffffff;
-    border-radius: 4px;
-    cursor: pointer;
+    .slider {
+        // position: absolute;
+        transform: rotate(-90deg);
+        -webkit-transform-origin: calc(100% - 1.25rem) 1.25rem;
+        transform-origin: calc(100% - 1.25rem) 1.25rem;
+        margin-top: 0;
+
+        border-top: .5px solid gray;
+        background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.8) 0%,
+            rgba(255, 250, 0, 0.0) 80%
+        );
+
+        -webkit-appearance: none;
+        top: 0;
+        width: 176px;
+        height: 2.5rem;
+
+        z-index: 1000;
+
+        &:focus {
+        outline: none;
+        }
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 2.0rem;
+        height: 2.0rem;
+        background: #ffffff;
+        border: 1px solid grey;
+        // border-radius: 4px;
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .slider::-moz-range-thumb {
+        width: 2.5rem;
+        height: 2.5rem;
+        background: #ffffff;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 }
 
 .switch-area {
@@ -194,48 +236,6 @@ export default {
     bottom: 5px;
     left: 10px;
     font-size: 10pt;
+    cursor: pointer;
 }
-
-// .app-card-icon {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex-direction: column;
-//     width: 18rem;
-//     height: 6rem;
-//     margin: 0.6rem;
-//     transition: transform 0.2s ease-in-out;
-//     &:hover {
-//         transform: scale(1.025);
-//     }
-//     html.can-touch &:hover {
-//         transform: none; /* disable hover effect on touch devices */
-//     }
-// }
-
-// .icon {
-//     position: relative;
-//     top: 0.7rem;
-//     margin: 0.7rem;
-//     margin-left: 0.325rem;
-//     font-size: 3rem;
-// }
-// .text-area {
-//     position: relative;
-//     top: 0.8rem;
-//     width: 14rem;
-// }
-
-// .switch-area {
-//     position: relative;
-//     top: -0.1rem;
-// }
-
-// @media (max-width: 415px) {
-//     .app-card-icon {
-//         width: 100vw;
-//         margin-left: 0;
-//         margin-right: 0;
-//     }
-// }
 </style>

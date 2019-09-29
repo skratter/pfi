@@ -12,7 +12,6 @@ export default {
             data.Results.forEach(function (element) {
                 Vue.set(state, element.Name, element)
             })
-            // console.log(state)
         })
     },
     setDevice (state, action) {
