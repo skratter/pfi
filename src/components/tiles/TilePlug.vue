@@ -7,7 +7,7 @@
         </div>
         <div class="text-area">
             <div class="white--text">
-                Raum
+                {{ room }}
             </div>
             <div class="headline white--text">
                 {{ name }}
@@ -38,7 +38,8 @@ export default {
             colorOffTop: 'rgba(255,0,0,0.6)',
             colorOffBottom: 'rgba(200,0,0,0.6)',
             clickApp: false,
-            name: 'No Alias defined'
+            name: 'No Alias defined',
+            room: 'No Room defined'
         }
     },
     computed: {
@@ -82,6 +83,7 @@ export default {
                     this.icon = this.iconOn
                 }
                 this.name = this.device.Attributes.alias
+                this.room = this.device.Attributes.pfiRoom
             }
         },
         switchDevice () {

@@ -1,16 +1,21 @@
 <template>
     <div
+        v-touch:start="startTimer"
+        v-touch:end="stopTimer"
         class="plug-tile"
         :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
     >
-        <div class="switch-area" @mousedown="startTimer" @mouseup="stopTimer">
-            <v-icon class="white--text icon">
+        <div class="switch-area">
+            <span v-if="showSlider" style="font-size: 2rem; margin-top: 10px; line-height: 176px;" class="white--text">
+                {{ slider }} %
+            </span>
+            <v-icon v-else class="white--text icon">
                 {{ icon }}
             </v-icon>
         </div>
         <div class="text-area">
             <div class="white--text">
-                Raum
+                {{ room }}
             </div>
             <div class="headline white--text">
                 {{ name }}
@@ -46,6 +51,7 @@ export default {
             timer: false,
             count: 0,
             showSlider: false,
+            changeInterval: false,
 
             colorTop: '',
             colorBottom: '',
@@ -61,7 +67,9 @@ export default {
             iconOff: 'mdi-lightbulb-outline',
 
             name: 'No Alias defined',
-            slider: 50,
+            room: 'No Room defined',
+            slider: false,
+            currentSlider: false,
             onoff: false
         }
     },
@@ -80,6 +88,10 @@ export default {
             } else {
                 this.onoff = false
             }
+
+            clearTimeout(this.changeInterval)
+            this.changeInterval = false
+            this.switchDevice()
         },
         onoff: function () {
             if (!this.onoff) {
@@ -97,7 +109,7 @@ export default {
             }
         },
         count: function () {
-            if (this.count > 10) {
+            if (this.count > 5) {
                 this.count = 0
                 clearInterval(this.timer)
                 this.timer = false
@@ -118,27 +130,29 @@ export default {
         }
     },
     methods: {
-        startTimer () {
-            if (!this.timer) {
+        startTimer (e) {
+            if (!this.timer && !this.showSlider) {
                 this.timer = setInterval(() => this.count++, 100)
             }
         },
         stopTimer () {
-            clearInterval(this.timer)
-            this.timer = false
-            if (this.count < 10) {
-                console.log(this.count)
-                this.onoff = !this.onoff
+            if (this.timer) {
+                clearInterval(this.timer)
+                this.timer = false
+                if (this.count < 5) {
+                    this.onoff = !this.onoff
+                }
+                this.count = 0
             }
-            this.count = 0
         },
         setDevice () {
             if (this.demo) {
                 this.name = 'Demo'
             } else {
                 this.name = this.device.Attributes.alias
+                this.room = this.device.Attributes.pfiRoom
+
                 if (this.device.Readings.state.Value === 'off') {
-                    this.slider = 0
                     this.colorTop = this.colorOffTop
                     this.colorBottom = this.colorOffBottom
                     this.icon = this.iconOff
@@ -147,6 +161,31 @@ export default {
                     this.colorBottom = this.colorOnBottom
                     this.icon = this.iconOn
                 }
+                this.slider = this.device.Readings.pct.Value
+                this.currentSlider = this.device.Readings.pct.Value
+            }
+        },
+        switchDevice () {
+            if (!this.demo && this.slider !== false) {
+                this.changeInterval = setTimeout(() => {
+                    if (this.slider !== Number(this.currentSlider)) {
+                        this.$store.dispatch('setDevice', {
+                            device: this.deviceName,
+                            state: 'pct' + ' ' + this.slider
+                        })
+                    }
+                }, 2000)
+            } else {
+                this.status = !this.status
+                if (this.status) {
+                    this.colorTop = this.colorOnTop
+                    this.colorBottom = this.colorOnBottom
+                    this.icon = this.iconOn
+                } else {
+                    this.colorTop = this.colorOffTop
+                    this.colorBottom = this.colorOffBottom
+                    this.icon = this.iconOff
+                }
             }
         }
     }
@@ -154,6 +193,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.plug-tile {
+    user-select: none;
+    -webkit-user-select: none;
+}
 .slider-overlay {
     position: absolute;
     top: 0;

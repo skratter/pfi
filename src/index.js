@@ -5,22 +5,15 @@ import vuetify from '@/vuetify.js'
 import settings from '@/settings'
 import axios from 'axios'
 import store from '@/store/store.js'
+import Vue2TouchEvents from 'vue2-touch-events'
 
 import '@/fhem-api/socket.js'
 import '../assets/app.scss'
 import '@/components/components.js'
 
-// Check that service workers are supported
-if (settings.serviceWorker) {
-    if ('serviceWorker' in navigator) {
-        // Start Service-Worker
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('/service-worker.js')
-        })
-    }
-}
-
 store.commit('setDemo', settings.demo)
+
+Vue.use(Vue2TouchEvents)
 
 Vue.prototype.$axios = axios
 /* eslint-disable-next-line no-new */
