@@ -5,6 +5,9 @@
         class="plug-tile"
         :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
     >
+        <div v-if="!showSlider && !noDim" class="pct white--text">
+            {{ slider }} %
+        </div>
         <div class="switch-area">
             <span v-if="showSlider" style="font-size: 2rem; margin-top: 10px; line-height: 176px;" class="white--text">
                 {{ slider }} %
@@ -43,7 +46,8 @@
 import { setInterval, clearInterval } from 'timers'
 export default {
     props: {
-        deviceName: { type: String, required: true }
+        deviceName: { type: String, required: true },
+        noDim: { type: Boolean, required: false }
     },
     data: () => {
         return {
@@ -109,7 +113,7 @@ export default {
             }
         },
         count: function () {
-            if (this.count > 5) {
+            if (this.count > 5 && !this.noDim) {
                 this.count = 0
                 clearInterval(this.timer)
                 this.timer = false
@@ -139,7 +143,7 @@ export default {
             if (this.timer) {
                 clearInterval(this.timer)
                 this.timer = false
-                if (this.count < 5) {
+                if (this.count < 5 || this.noDim) {
                     this.onoff = !this.onoff
                 }
                 this.count = 0
@@ -148,9 +152,13 @@ export default {
         setDevice () {
             if (this.demo) {
                 this.name = 'Demo'
+                this.slider = 50
+                this.currentSlider = 50
             } else {
                 this.name = this.device.Attributes.alias
                 this.room = this.device.Attributes.pfiRoom
+                this.slider = this.device.Readings.pct.Value
+                this.currentSlider = this.device.Readings.pct.Value
 
                 if (this.device.Readings.state.Value === 'off') {
                     this.colorTop = this.colorOffTop
@@ -161,8 +169,6 @@ export default {
                     this.colorBottom = this.colorOnBottom
                     this.icon = this.iconOn
                 }
-                this.slider = this.device.Readings.pct.Value
-                this.currentSlider = this.device.Readings.pct.Value
             }
         },
         switchDevice () {
@@ -175,17 +181,6 @@ export default {
                         })
                     }
                 }, 2000)
-            } else {
-                this.status = !this.status
-                if (this.status) {
-                    this.colorTop = this.colorOnTop
-                    this.colorBottom = this.colorOnBottom
-                    this.icon = this.iconOn
-                } else {
-                    this.colorTop = this.colorOffTop
-                    this.colorBottom = this.colorOffBottom
-                    this.icon = this.iconOff
-                }
             }
         }
     }
@@ -196,6 +191,13 @@ export default {
 .plug-tile {
     user-select: none;
     -webkit-user-select: none;
+    cursor: pointer;
+}
+.pct {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
 }
 .slider-overlay {
     position: absolute;

@@ -1,6 +1,10 @@
 <template>
-    <div class="plug-tile" :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }">
-        <div class="switch-area" @click="switchDevice()">
+    <div
+        class="plug-tile"
+        :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
+        @click="switchDevice()"
+    >
+        <div class="switch-area">
             <v-icon class="white--text icon">
                 {{ icon }}
             </v-icon>
@@ -117,6 +121,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.plug-tile {
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+}
 .switch-area {
     position: relative;
     // margin: 10px auto;
