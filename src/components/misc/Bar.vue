@@ -1,22 +1,22 @@
 <template>
     <div>
         <v-toolbar dark color="rgba(0,0,0,.4)" style="z-index: 1000;">
-            <router-link :to="{ name: 'home' }">
+            <router-link :to="{ name: 'home' }" aria-label="Home Link">
                 <v-img src="/img/logo.png" max-width="50" max-height="50" class="mr-3 ml-2"/>
             </router-link>
             <v-toolbar-title>{{ title }}</v-toolbar-title>
 
             <v-spacer/>
 
-            <v-btn icon class="mr-2" @click="reload()">
+            <v-btn icon class="mr-2" aria-label="Reload Page" @click="reload()">
                 <v-icon>mdi-reload</v-icon>
             </v-btn>
             <v-app-bar-nav-icon class="nav-icon mr-1">
-                <v-btn icon>
-                    <v-icon v-if="!showNav" @click="showNavbar">
+                <v-btn icon aria-label="Navigation">
+                    <v-icon v-if="!showNav" aria-label="Navigation" @click="showNavbar">
                         mdi-menu
                     </v-icon>
-                    <v-icon v-else @click="hideNavbar">
+                    <v-icon v-else aria-label="Navigation" @click="hideNavbar">
                         mdi-close
                     </v-icon>
                 </v-btn>
@@ -109,7 +109,14 @@ export default {
     },
     methods: {
         reload () {
-            window.location.reload(true)
+            navigator.serviceWorker.getRegistration().then(function (reg) {
+                if (reg) {
+                    reg.unregister().then(function () { window.location.reload(true) })
+                } else {
+                    window.location.reload(true)
+                }
+            })
+            // window.location.reload(true)
         },
         showNavbar () {
             this.$store.commit('setBar', true)

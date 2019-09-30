@@ -120,5 +120,9 @@ module.exports = {
             to: resolve('dist'),
             toType: 'dir'
         }])
-    ]
+    ],
+    output: {
+        filename: '[name].[contenthash].js',
+        path: resolve('dist')
+    }
 }

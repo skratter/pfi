@@ -1,5 +1,5 @@
 {
-    "short_name": "Cheeb",
+    "short_name": "PFI",
     "name": "Progressive socket.io based Interface for FHEM",
     "icons": [
       {
@@ -14,8 +14,8 @@
       }
     ],
     "start_url": "/?utm_source=a2hs",
-    "background_color": "#FFFFFF",
+    "background_color": "#000000",
     "display": "standalone",
     "scope": "/",
-    "theme_color": "#FFFFFF"
+    "theme_color": "#000000"
   }

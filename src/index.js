@@ -11,6 +11,16 @@ import '@/fhem-api/socket.js'
 import '../assets/app.scss'
 import '@/components/components.js'
 
+// Check that service workers are supported
+if (settings.serviceWorker) {
+    if ('serviceWorker' in navigator) {
+        // Start Service-Worker
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/service-worker.js')
+        })
+    }
+}
+
 store.commit('setDemo', settings.demo)
 
 Vue.use(Vue2TouchEvents)
