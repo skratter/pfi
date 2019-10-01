@@ -49,6 +49,8 @@ export default {
             colorOnBottom: 'rgba(0,200,0,0.6)',
             colorOffTop: 'rgba(255,0,0,0.6)',
             colorOffBottom: 'rgba(200,0,0,0.6)',
+            colorWaitTop: 'rgba(255,196,0,0.6)',
+            colorWaitBottom: 'rgba(200,120,0,0.6)',
             name: 'No Alias defined',
             room: 'No Room defined'
         }
@@ -92,6 +94,13 @@ export default {
                     this.colorBottom = this.colorOnBottom
                     this.state = 'on'
                 }
+                if (this.device.Readings.state.Value !== this.device.Readings.active.Value) {
+                    this.switched = true
+                    this.colorTop = this.colorWaitTop
+                    this.colorBottom = this.colorWaitBottom
+                } else {
+                    this.switched = false
+                }
                 this.name = this.device.Name
                 this.room = this.device.Attributes.pfiRoom
             }
@@ -103,8 +112,7 @@ export default {
                 } else {
                     this.toggle = 'off'
                 }
-                this.switched = true
-                setTimeout(() => { this.switched = false }, 300000)
+
                 this.$store.dispatch('setDevice', {
                     device: this.deviceName,
                     state: this.toggle
