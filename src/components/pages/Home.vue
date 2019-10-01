@@ -1,5 +1,9 @@
 <template>
     <div>
+        <div class="grid">
+            <tile-plug device-name="HUEDevice2" class="grid-item"/>
+            <tile-light device-name="HUEDevice1" :no-dim="false" class="grid-item"/>
+        </div>
         <v-container fluid grid-list-xl>
             <v-layout
                 row
@@ -7,13 +11,6 @@
                 justify-center
                 style="margin: 0;"
             >
-                <tile-light device-name="HUEDevice1"/>
-                <tile-plug device-name="HUEDevice2"/>
-                <tile-light device-name="HUEDevice1"/>
-                <tile-plug device-name="HUEDevice2"/>
-                <tile-light device-name="HUEDevice1"/>
-                <tile-plug device-name="HUEDevice2"/>
-
                 <v-card color="rgba(0,0,0,.4)" class="mt-3">
                     <v-card-title class="white--text">
                         BVG

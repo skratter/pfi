@@ -2,7 +2,7 @@
     <div class="bvg-card">
         <div class="bvg-header">
             <v-icon class="bvg-icon">
-                {{ data.mode }} fa-fw
+                {{ data.mode }}
             </v-icon>
         </div>
         <div class="size-wrap" style="width: 100%; margin: 5px; display: none;"></div>
@@ -82,9 +82,9 @@ export default {
     font-size: 16pt;
 }
 .bvg-icon {
-    font-size: 4em;
+    font-size: 5em;
     color: white !important;
-    margin: 14px;
+    margin: 1rem;
 }
 .amp {
     font-size: 1.75rem;

@@ -19,7 +19,7 @@ export default {
                     direction: 'DEMO Station 1',
                     first: false,
                     line: '666',
-                    mode: 'fas fa-subway',
+                    mode: 'mdi-subway-variant',
                     station: 'Musterstraße 123 / Ecke Blubb',
                     times: [
                         {
@@ -40,7 +40,7 @@ export default {
                     direction: 'DEMO Station 2 with long Name',
                     first: false,
                     line: '666',
-                    mode: 'fas fa-walking',
+                    mode: 'mdi-walk',
                     station: 'Musterstraße 123 / Ecke Blubb',
                     times: [
                         {
@@ -59,7 +59,7 @@ export default {
                     direction: 'Demo Station 3',
                     first: false,
                     line: '666',
-                    mode: 'fas fa-bus-alt',
+                    mode: 'mdi-bus',
                     station: 'Musterstraße 123 / Ecke Blubb',
                     times: [
                         {
@@ -128,11 +128,11 @@ export default {
         getMode: function (mode) {
             switch (mode) {
             case 'bus':
-                return 'fas fa-bus-alt'
+                return 'mdi-bus'
             case 'tram':
-                return 'far fa-subway'
+                return 'mdi-subway-variant'
             default:
-                return 'far fa-walking'
+                return 'mdi-walk'
             }
         }
     }
