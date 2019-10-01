@@ -71,7 +71,7 @@ export default {
     methods: {
         setDevice () {
             if (this.demo) {
-                this.name = 'Demo'
+                this.name = 'Demo Plug'
                 this.colorTop = this.colorOffTop
                 this.colorBottom = this.colorOffBottom
                 this.status = false

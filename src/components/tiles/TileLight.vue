@@ -126,7 +126,7 @@ export default {
         },
         setDevice () {
             if (this.demo) {
-                this.name = 'Demo'
+                this.name = 'Demo Light'
                 this.slider = 50
                 this.currentSlider = 50
             } else {
