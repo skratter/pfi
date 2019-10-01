@@ -15,7 +15,7 @@
         />
         <div class="grid-item red"></div>
         <tile-plug device-name="HUEDevice2" class="grid-item"/>
-        <tile-light device-name="HUEDevice1" class="grid-item"/> <!-- :no-dim="true" -->
+        <tile-light device-name="HUEDevice1" :no-dim="false" class="grid-item"/>
         <tile-light device-name="HUEDevice1" :no-dim="true" class="grid-item"/>
         <div class="grid-item yellow"></div>
         <div class="grid-item brown"></div>
