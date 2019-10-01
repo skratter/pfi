@@ -2,20 +2,25 @@
     "short_name": "PFI",
     "name": "Progressive socket.io based Interface for FHEM",
     "icons": [
-      {
-        "src": "img/192.png",
-        "type": "image/png",
-        "sizes": "192x192"
-      },
-      {
-        "src": "img/512.png",
-        "type": "image/png",
-        "sizes": "512x512"
-      }
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
     ],
-    "start_url": "/?utm_source=a2hs",
+    "theme_color": "#000000",
     "background_color": "#000000",
+    "start_url": "/?utm_source=a2hs",
     "display": "standalone",
-    "scope": "/",
-    "theme_color": "#000000"
+    "scope": "/"
   }
