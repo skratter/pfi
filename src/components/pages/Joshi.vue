@@ -9,7 +9,7 @@
 export default {
     data: () => {
         return {
-            title: 'Kinderzimmer (Joshi)'
+            title: 'Joshua'
         }
     },
     computed: {

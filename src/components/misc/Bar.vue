@@ -1,6 +1,6 @@
 <template>
     <div>
-        <v-toolbar dark color="rgba(0,0,0,.4)" style="z-index: 1000;">
+        <v-toolbar dark color="rgba(0,0,0,.4)">
             <router-link :to="{ name: 'home' }" aria-label="Home Link">
                 <v-img src="/img/logo.png" max-width="50" max-height="50" class="mr-3 ml-2"/>
             </router-link>
@@ -16,15 +16,20 @@
                     <v-icon v-if="!showNav" aria-label="Navigation" @click="showNavbar">
                         mdi-menu
                     </v-icon>
-                    <v-icon v-else aria-label="Navigation" @click="hideNavbar">
+                    <!-- <v-icon v-else aria-label="Navigation" @click="hideNavbar">
                         mdi-close
-                    </v-icon>
+                    </v-icon> -->
                 </v-btn>
             </v-app-bar-nav-icon>
         </v-toolbar>
 
         <transition name="fade">
             <div v-if="showNav" class="nav-container">
+                <v-btn icon aria-label="Navigation" class="close-nav">
+                    <v-icon aria-label="Navigation" class="white--text" @click="hideNavbar">
+                        mdi-close
+                    </v-icon>
+                </v-btn>
                 <transition-group class="app-wrapper" name="slide-in">
                     <div v-for="(app, i) in getApps" :key="'app'+i" :style="{ '--i':i }">
                         <tile-link
@@ -52,31 +57,31 @@ export default {
                     name: 'Home',
                     colorTop: '#FFEE00',
                     colorBottom: '#FF6000',
-                    icon: 'fas fa-home fa-fw',
+                    icon: 'mdi-home',
                     route: 'home'
                 }, {
                     name: 'Räume',
                     colorTop: '#FFEE00',
                     colorBottom: '#FF6000',
-                    icon: 'fas fa-door-closed fa-fw',
+                    icon: 'mdi-door',
                     route: 'rooms'
                 }, {
                     name: 'Funktionen',
                     colorTop: '#FFEE00',
                     colorBottom: '#FF6000',
-                    icon: 'fas fa-cogs fa-fw',
+                    icon: 'mdi-cogs',
                     route: 'functions'
                 }, {
                     name: 'Test',
                     colorTop: '#FFEE00',
                     colorBottom: '#FF6000',
-                    icon: 'far fa-vial fa-fw',
+                    icon: 'mdi-test-tube',
                     route: 'test'
                 }, {
                     name: 'Platzhalter',
                     colorTop: '#BBBBBB',
                     colorBottom: '#777777',
-                    icon: 'far fa-image fa-fw',
+                    icon: 'mdi-image',
                     route: 'placeholder'
                 }
             ]
@@ -135,6 +140,14 @@ export default {
 <style lang="scss" scoped>
 .nav-icon {
     cursor: pointer;
+}
+.close-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 64px;
+    margin-right: 26px;
+    z-index: 1000;
 }
 
 .nav-container {

@@ -1,14 +1,12 @@
 <template>
     <div>
-        <div>
-            <v-container fluid grid-list-xl>
-                <v-layout v-cloak align-center justify-center column
-                          fill-height
-                >
-                    <list-bvg/>
-                </v-layout>
-            </v-container>
-        </div>
+        <v-container fluid grid-list-xl>
+            <v-layout v-cloak align-center justify-center column
+                      fill-height
+            >
+                <list-bvg/>
+            </v-layout>
+        </v-container>
     </div>
 </template>
 

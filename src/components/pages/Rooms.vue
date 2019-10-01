@@ -1,23 +1,13 @@
 <template>
-    <div>
-        <div>
-            <v-container fluid grid-list-xl>
-                <v-layout
-                    row
-                    wrap
-                    justify-center
-                >
-                    <div v-for="app in apps" :key="app.name">
-                        <tile-link
-                            :name="app.name"
-                            :color-top="app.colorTop"
-                            :color-bottom="app.colorBottom"
-                            :icon="app.icon"
-                            :route="app.route"
-                        />
-                    </div>
-                </v-layout>
-            </v-container>
+    <div class="grid">
+        <div v-for="app in apps" :key="app.name">
+            <tile-link
+                :name="app.name"
+                :color-top="app.colorTop"
+                :color-bottom="app.colorBottom"
+                :icon="app.icon"
+                :route="app.route"
+            />
         </div>
     </div>
 </template>
@@ -32,7 +22,7 @@ export default {
                     name: 'Kinderzimmer',
                     colorTop: 'rgba(255, 238, 0, 1)',
                     colorBottom: 'rgba(255, 96, 0, 1)',
-                    icon: 'fas fa-baby fa-fw',
+                    icon: 'mdi-human-child',
                     route: 'joshi'
                 }
             ]
