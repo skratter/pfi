@@ -104,24 +104,4 @@ export default {
         margin-right: auto;
     }
 }
-// @media (max-width: 480px){
-//         .bvg-card {
-//         width: 320px;
-//     }
-// }
-// @media (min-width: 481px){
-//         .bvg-card {
-//         width: 480px;
-//     }
-// }
-// @media (min-width: 720px){
-//         .bvg-card {
-//         width: 700px;
-//     }
-// }
-// @media (min-width: 830px) {
-//     .bvg-card {
-//         width: 820px;
-//     }
-// }
 </style>
