@@ -1,14 +1,9 @@
 <template>
-    <div
-        v-touch:start="startTimer"
-        v-touch:end="stopTimer"
-        class="plug-tile"
-        :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
-    >
+    <div class="plug-tile" :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }">
         <div v-if="!showSlider && !noDim" class="pct white--text">
             {{ slider }} %
         </div>
-        <div class="switch-area">
+        <div v-touch:tap="tap" v-touch:longtap="long" class="switch-area">
             <span v-if="showSlider" style="font-size: 2rem; margin-top: 10px; line-height: 176px;" class="white--text">
                 {{ slider }} %
             </span>
@@ -43,7 +38,6 @@
 </template>
 
 <script>
-import { setInterval, clearInterval } from 'timers'
 export default {
     props: {
         deviceName: { type: String, required: true },
@@ -52,8 +46,6 @@ export default {
     data: () => {
         return {
             demo: false,
-            timer: false,
-            count: 0,
             showSlider: false,
             changeInterval: false,
 
@@ -111,14 +103,6 @@ export default {
                 this.colorBottom = this.colorOnBottom
                 this.icon = this.iconOn
             }
-        },
-        count: function () {
-            if (this.count > 5 && !this.noDim) {
-                this.count = 0
-                clearInterval(this.timer)
-                this.timer = false
-                this.showSlider = true
-            }
         }
     },
     created () {
@@ -134,20 +118,11 @@ export default {
         }
     },
     methods: {
-        startTimer (e) {
-            if (!this.timer && !this.showSlider) {
-                this.timer = setInterval(() => this.count++, 100)
-            }
+        tap () {
+            this.onoff = !this.onoff
         },
-        stopTimer () {
-            if (this.timer) {
-                clearInterval(this.timer)
-                this.timer = false
-                if (this.count < 5 || this.noDim) {
-                    this.onoff = !this.onoff
-                }
-                this.count = 0
-            }
+        long () {
+            this.showSlider = true
         },
         setDevice () {
             if (this.demo) {
@@ -173,14 +148,14 @@ export default {
         },
         switchDevice () {
             if (!this.demo && this.slider !== false) {
-                this.changeInterval = setTimeout(() => {
-                    if (this.slider !== Number(this.currentSlider)) {
+                if (this.slider !== this.currentSlider) {
+                    this.changeInterval = setTimeout(() => {
                         this.$store.dispatch('setDevice', {
                             device: this.deviceName,
                             state: 'pct' + ' ' + this.slider
                         })
-                    }
-                }, 2000)
+                    }, 1000)
+                }
             }
         }
     }
