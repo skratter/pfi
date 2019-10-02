@@ -11,7 +11,6 @@
         </div>
         <div class="text-area">
             <div class="white--text">
-                Link
             </div>
             <div class="headline white--text">
                 {{ name }}

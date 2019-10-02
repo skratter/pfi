@@ -114,14 +114,7 @@ export default {
     },
     methods: {
         reload () {
-            navigator.serviceWorker.getRegistration().then(function (reg) {
-                if (reg) {
-                    reg.unregister().then(function () { window.location.reload(true) })
-                } else {
-                    window.location.reload(true)
-                }
-            })
-            // window.location.reload(true)
+            window.location.reload(true)
         },
         showNavbar () {
             this.$store.commit('setBar', true)

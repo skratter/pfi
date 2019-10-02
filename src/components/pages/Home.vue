@@ -4,10 +4,18 @@
             <tile-plug device-name="HUEDevice2" class="grid-item"/>
             <tile-light device-name="HUEDevice1" :no-dim="false" class="grid-item"/>
             <tile-computer device-name="Computer" class="grid-item"/>
+        </div>
+        <div class="grid">
             <tile-big-link
                 name="BVG"
                 icon="mdi-bus"
                 route="bvg"
+                class="grid-item"
+            />
+            <tile-big-link
+                name="Räume"
+                icon="mdi-door"
+                route="rooms"
                 class="grid-item"
             />
         </div>

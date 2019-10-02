@@ -1,6 +1,5 @@
 export default {
-    demo: true,
-    serviceWorker: false,
+    demo: false,
     // FHEM.JS Server URL
-    socket: 'https://192.168.178.10:8086'
+    socket: 'http://192.168.178.10:8086'
 }
