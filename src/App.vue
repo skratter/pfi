@@ -22,12 +22,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#myApp {
-    background-color: #000000;
-    background-image: url('/img/bg.jpg');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    background-attachment: fixed;
-}
 </style>

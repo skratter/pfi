@@ -6,13 +6,13 @@
             <tile-computer device-name="Computer" class="grid-item"/>
         </div>
         <div class="grid">
-            <tile-big-link
+            <tile-link
                 name="BVG"
                 icon="mdi-bus"
                 route="bvg"
                 class="grid-item"
             />
-            <tile-big-link
+            <tile-link
                 name="Räume"
                 icon="mdi-door"
                 route="rooms"

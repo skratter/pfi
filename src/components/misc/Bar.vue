@@ -32,7 +32,7 @@
                 </v-btn>
                 <transition-group class="app-wrapper" name="slide-in">
                     <div v-for="(app, i) in getApps" :key="'app'+i" :style="{ '--i':i }">
-                        <tile-link
+                        <link-icon
                             :name="app.name"
                             :color-top="app.colorTop"
                             :color-bottom="app.colorBottom"

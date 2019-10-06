@@ -4,6 +4,9 @@
         :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
         @click="switchDevice()"
     >
+        <div class="status white--text">
+            {{ switchStatus }}
+        </div>
         <div class="switch-area">
             <v-icon class="white--text icon">
                 {{ icon }}
@@ -13,7 +16,7 @@
             <div class="white--text">
                 {{ room }}
             </div>
-            <div class="headline white--text">
+            <div class="headline-area white--text">
                 {{ name }}
             </div>
         </div>
@@ -29,6 +32,7 @@ export default {
         return {
             demo: false,
             status: false,
+            switchStatus: 'off',
 
             icon: 'mdi-power-plug-off',
             iconOn: 'mdi-power-plug',
@@ -54,6 +58,13 @@ export default {
     watch: {
         device: function () {
             this.setDevice()
+        },
+        status: function () {
+            if (this.status) {
+                this.switchStatus = 'on'
+            } else {
+                this.switchStatus = 'off'
+            }
         }
     },
     created () {
@@ -80,11 +91,13 @@ export default {
                     this.colorTop = this.colorOffTop
                     this.colorBottom = this.colorOffBottom
                     this.icon = this.iconOff
+                    this.status = false
                 }
                 if (this.device.Readings.state.Value === 'on') {
                     this.colorTop = this.colorOnTop
                     this.colorBottom = this.colorOnBottom
                     this.icon = this.iconOn
+                    this.status = true
                 }
                 this.name = this.device.Attributes.alias
                 this.room = this.device.Attributes.pfiRoom
@@ -99,6 +112,7 @@ export default {
             }, 100)
 
             if (!this.demo) {
+                this.status = !this.status
                 this.$store.dispatch('setDevice', {
                     device: this.deviceName,
                     state: 'toggle'
@@ -126,24 +140,40 @@ export default {
     -webkit-user-select: none;
     cursor: pointer;
 }
+.status {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-top: 2px;
+    margin-right: 5px;
+}
 .switch-area {
     position: relative;
-    // margin: 10px auto;
-    line-height: 165px;
+    line-height: 120px;
+    height: 120px;
+    width: 120px;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
+    z-index: 10;
 
     .icon {
-        // margin-top: 30px;
-        font-size: 5rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 10px;
+        font-size: 3rem;
     }
 }
 
 .text-area {
     position: absolute;
-    bottom: 5px;
+    bottom: 2px;
     left: 10px;
-    font-size: 10pt;
+    font-size: .8rem;
+
+    .headline-area {
+        font-size: 1.2rem;
+    }
 }
 </style>

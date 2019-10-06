@@ -5,14 +5,6 @@
                 mdi-bus
             </v-icon>
         </div>
-        <tile-link
-            name="Test Link"
-            color-top="red"
-            color-bottom="yellow"
-            icon="mdi-bus"
-            route="home"
-            class="grid-item"
-        />
         <div class="grid-item red"></div>
         <tile-plug device-name="HUEDevice2" class="grid-item"/>
         <tile-light device-name="HUEDevice1" :no-dim="false" class="grid-item"/>

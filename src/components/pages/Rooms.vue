@@ -1,7 +1,7 @@
 <template>
     <div class="grid">
         <div v-for="app in apps" :key="app.name">
-            <tile-link
+            <link-icon
                 :name="app.name"
                 :color-top="app.colorTop"
                 :color-bottom="app.colorBottom"

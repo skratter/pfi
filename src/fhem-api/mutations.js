@@ -11,8 +11,8 @@ export default {
         state.io.emit('JsonList2', '', function (data) {
             data.Results.forEach(function (element) {
                 Vue.set(state, element.Name, element)
-                // console.log(element.Name)
-                // console.log(element)
+                console.log(element.Name)
+                console.log(element)
             })
         })
     },

@@ -4,8 +4,11 @@
         :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
         @click="switchDevice()"
     >
-        <div v-if="switched" class="pct white--text">
+        <div v-if="switched" class="status white--text">
             next: {{ toggle }}
+        </div>
+        <div v-else class="status white--text">
+            {{ state }}
         </div>
         <div class="switch-area">
             <v-icon v-if="switched" class="white--text icon">
@@ -19,7 +22,7 @@
             <div class="white--text">
                 {{ room }}
             </div>
-            <div class="headline white--text">
+            <div class="headline-area white--text">
                 {{ name }}
             </div>
         </div>
@@ -138,30 +141,41 @@ export default {
     -webkit-user-select: none;
     cursor: pointer;
 }
-.pct {
+.status {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 5px;
+    margin-top: 2px;
+    margin-right: 5px;
 }
 .switch-area {
     position: relative;
     // margin: 10px auto;
-    line-height: 165px;
+    line-height: 120px;
+    height: 120px;
+    width: 120px;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
+    z-index: 10;
 
     .icon {
-        // margin-top: 30px;
-        font-size: 5rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 10px;
+        font-size: 3rem;
     }
 }
 
 .text-area {
     position: absolute;
-    bottom: 5px;
+    bottom: 2px;
     left: 10px;
-    font-size: 10pt;
+    font-size: .8rem;
+
+    .headline-area {
+        font-size: 1.2rem;
+    }
 }
 </style>

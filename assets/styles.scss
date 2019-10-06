@@ -9,7 +9,14 @@ body {
     user-select: none;
     font-size: 14px;
 }
-
+#myApp {
+    background-color: #000000;
+    background-image: url('/img/bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
 .v-card {
     border-radius: 0;
     box-shadow: none;
