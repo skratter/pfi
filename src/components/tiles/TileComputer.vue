@@ -98,6 +98,7 @@ export default {
                     this.state = 'on'
                 }
                 if (this.device.Readings.state.Value !== this.device.Readings.active.Value) {
+                    this.toggle = this.device.Readings.active.Value
                     this.switched = true
                     this.colorTop = this.colorWaitTop
                     this.colorBottom = this.colorWaitBottom
