@@ -7,11 +7,6 @@
             {{ slider }} %
         </div>
         <div v-touch:tap="tap" v-touch:longtap="long" class="switch-area">
-            <!-- <span
-                v-if="showSlider"
-                style="font-size: 2rem; margin-top: 10px; line-height: 176px;"
-                class="white--text"
-            >{{ slider }} %</span>-->
             <v-icon class="white--text icon">
                 {{ icon }}
             </v-icon>
