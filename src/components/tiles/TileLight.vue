@@ -274,6 +274,7 @@ export default {
     height: 100px;
     border-radius: 10px;
     overflow: hidden;
+    z-index: 1000;
 
     &:focus {
         outline: none;
@@ -283,9 +284,10 @@ export default {
 ::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 0;
-    height: 0;
-    border: 0;
+    width: 20px;
+    height: 100px;
+    border: 1px solid rgb(40,40,40);
+    background:rgb(255, 255, 255);
     box-shadow: -100vw 0 0 100vw rgb(250, 230, 0);
     cursor: pointer;
 
