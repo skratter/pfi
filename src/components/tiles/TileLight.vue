@@ -62,8 +62,8 @@ export default {
             iconOn: 'mdi-lightbulb',
             iconOff: 'mdi-lightbulb-outline',
 
-            name: 'No Alias defined',
-            room: 'No Room defined',
+            name: 'No Alias',
+            room: 'No Room',
             slider: false,
             currentSlider: false,
             onoff: false

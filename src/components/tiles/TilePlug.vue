@@ -46,8 +46,8 @@ export default {
             colorOffTop: 'rgba(255,0,0,0.6)',
             colorOffBottom: 'rgba(200,0,0,0.6)',
             clickApp: false,
-            name: 'No Alias defined',
-            room: 'No Room defined'
+            name: 'No Alias',
+            room: 'No Room'
         }
     },
     computed: {
