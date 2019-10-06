@@ -1,13 +1,18 @@
 <template>
-    <div class="plug-tile" :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }">
-        <div v-if="!showSlider && !noDim" class="pct white--text">
+    <div
+        class="plug-tile"
+        :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
+    >
+        <div v-if="!noDim" class="pct white--text">
             {{ slider }} %
         </div>
         <div v-touch:tap="tap" v-touch:longtap="long" class="switch-area">
-            <span v-if="showSlider" style="font-size: 2rem; margin-top: 10px; line-height: 176px;" class="white--text">
-                {{ slider }} %
-            </span>
-            <v-icon v-else class="white--text icon">
+            <!-- <span
+                v-if="showSlider"
+                style="font-size: 2rem; margin-top: 10px; line-height: 176px;"
+                class="white--text"
+            >{{ slider }} %</span>-->
+            <v-icon class="white--text icon">
                 {{ icon }}
             </v-icon>
         </div>
@@ -20,19 +25,24 @@
             </div>
         </div>
         <div v-if="showSlider" class="slider-overlay">
-            <v-icon class="close-slider white--text" @click="showSlider = !showSlider">
-                mdi-close
-            </v-icon>
-            <input
-                id="myRange"
-                v-model="slider"
-                type="range"
-                orient="vertical"
-                min="0"
-                max="100"
-                step="10"
-                class="slider"
-            />
+            <div class="slider-inner">
+                <v-icon class="close-slider white--text" @click="showSlider = !showSlider">
+                    mdi-close
+                </v-icon>
+                <input
+                    id="myRange"
+                    v-model="slider"
+                    type="range"
+                    orient="vertical"
+                    min="0"
+                    max="100"
+                    step="10"
+                    class="slider"
+                />
+                <div class="white--text slider-pct">
+                    {{ slider }} %
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -175,67 +185,6 @@ export default {
     margin-top: 2px;
     margin-right: 5px;
 }
-.slider-overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    z-index: 15;
-
-    .close-slider{
-        position: absolute;
-        top: 0;
-        left: 0;
-        cursor: pointer;
-    }
-
-    .slider {
-        // position: absolute;
-        transform: rotate(-90deg);
-        -webkit-transform-origin: calc(100% - 1.25rem) 1.25rem;
-        transform-origin: calc(100% - 1.25rem) 1.25rem;
-        margin-top: 0;
-
-        border-top: .5px solid gray;
-        background: linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.8) 0%,
-            rgba(255, 250, 0, 0.0) 80%
-        );
-
-        -webkit-appearance: none;
-        top: 0;
-        width: 120px;
-        height: 2.5rem;
-
-        &:focus {
-        outline: none;
-        }
-    }
-
-    .slider::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        appearance: none;
-        width: 2.0rem;
-        height: 2.0rem;
-        background: #ffffff;
-        border: 1px solid grey;
-        // border-radius: 4px;
-        cursor: pointer;
-
-        &:focus {
-            outline: none;
-        }
-    }
-
-    .slider::-moz-range-thumb {
-        width: 2.5rem;
-        height: 2.5rem;
-        background: #ffffff;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-}
 
 .switch-area {
     position: relative;
@@ -260,10 +209,93 @@ export default {
     position: absolute;
     bottom: 2px;
     left: 10px;
-    font-size: .8rem;
+    font-size: 0.8rem;
 
     .headline-area {
         font-size: 1.2rem;
+    }
+}
+
+.slider-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.6);
+}
+@media (max-width: 400px) {
+    .slider-inner {
+        width: 360px;
+        height: 80%;
+        margin-top: 10%;
+    }
+    .slider-pct {
+        margin-top: 85%;
+        width: 100%;
+        text-align: center;
+        font-size: 2rem;
+    }
+}
+@media (min-width: 401px) {
+    .slider-inner {
+        width: 360px;
+        height: 600px;
+        margin-top: 5%;
+        border-radius: 10px;
+    }
+    .slider-pct {
+        margin-top: 300px;
+        width: 100%;
+        text-align: center;
+        font-size: 2rem;
+    }
+}
+.slider-inner {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    background: rgb(30, 30, 30);
+}
+.slider {
+    transform: rotate(-90deg);
+    -webkit-transform-origin: calc(100% - 500px) 100px;
+    transform-origin: calc(100% - 200px) 130px;
+    margin-top: 80px;
+}
+.close-slider {
+    position: relative;
+    top: 0;
+    left: 0;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.slider {
+    background: rgb(40, 40, 40);
+    -webkit-appearance: none;
+    width: 450px;
+    height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 0;
+    height: 0;
+    border: 0;
+    box-shadow: -100vw 0 0 100vw rgb(250, 230, 0);
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
     }
 }
 </style>

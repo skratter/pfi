@@ -13,13 +13,6 @@
 .grid-item {
     position: relative;
     // Hover Scale
-    transition: transform 0.2s ease-in-out;
-    &:hover {
-        transform: scale(1.025);
-    }
-    html.can-touch &:hover {
-        transform: none; /* disable hover effect on touch devices */
-    }
 }
 .grid-item-w {
     grid-column: span 2;
