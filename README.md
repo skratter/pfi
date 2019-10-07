@@ -17,8 +17,8 @@ A working [fhem.js](https://github.com/winne27/fhem.js) connected with your FHEM
 **Installation**
 1. Download or clone Git Repository
 2. Run `npm install` to get all needed Packages.
-3. Change `settings.js`, disable DEMO Mode and set IP of Fhem.js Server. *If you like to use secure connection, no problem. But you have to run this website on a secure host aswell.*
-4. Set rooms and devices in `/src/data/json/rooms.json` and `/src/data/json/home.json`, example data is there.
+3. Change `/config/example.config.js` to `/config/config.js` and change settings in it.
+4. Set rooms and devices in `/config/json/rooms.json` and `/config/json/home.json`, example data is there.
 5. Run `npm run prod` to generate build.
 6. Copy content of dist to webserver.
 7. Have fun! :-)

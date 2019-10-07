@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from '@/App.vue'
 import router from '@/routes/router.js'
 import vuetify from '@/vuetify.js'
-import settings from '@/settings'
+import config from '~/config/config.js'
 import axios from 'axios'
 import store from '@/store/store.js'
 import Vue2TouchEvents from 'vue2-touch-events'
@@ -11,7 +11,7 @@ import '@/fhem-api/socket.js'
 import '../assets/app.scss'
 import '@/components/components.js'
 
-store.commit('setDemo', settings.demo)
+store.commit('setDemo', config.demo)
 
 Vue.use(Vue2TouchEvents)
 

@@ -1,14 +1,14 @@
 import io from 'socket.io-client'
-import settings from '@/settings'
+import config from '~/config/config.js'
 import store from '@/store/store.js'
 
-if (!settings.demo) {
+if (!config.demo) {
     const options = {
         timeout: 5000,
         'sync disconnect on unload': true
     }
 
-    const server = settings.socket
+    const server = config.socket
     const socket = io(server, options)
 
     socket.on('connect', function () {
