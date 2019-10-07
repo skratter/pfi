@@ -1,22 +1,27 @@
 [
     {
         "name": "Joshua",
+        "icon": "mdi-human-male-boy",
         "devs": [
             {
                 "name": "HUEDevice1",
+                "room": "Joshua",
                 "type": "tile-light"
             },
             {
                 "name": "HUEDevice2",
+                "room": "Joshua",
                 "type": "tile-plug"
             }
         ]
     },
     {
         "name": "Arbeitszimmer",
+        "icon": "mdi-desk-lamp",
         "devs": [
             {
                 "name": "Computer",
+                "room": "Arbeitszimmer",
                 "type": "tile-computer"
             }
         ]

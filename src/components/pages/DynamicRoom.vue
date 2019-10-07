@@ -2,14 +2,14 @@
     <div>
         <div class="grid">
             <div v-for="device in devs" :key="device.name">
-                <component :is="device.type" :device-name="device.name"/>
+                <component :is="device.type" :room="title" :device-name="device.name"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import data from '@/data/data.json'
+import rooms from '~/config/json/rooms.json'
 
 export default {
     data: () => {
@@ -26,9 +26,8 @@ export default {
     },
     created () {
         this.title = this.$router.currentRoute.name
-        const temp = data.find(item => item.name === this.title)
+        const temp = rooms.find(item => item.name === this.title)
         this.devs = temp.devs
-        console.log(this.devs)
     },
     methods: {
 

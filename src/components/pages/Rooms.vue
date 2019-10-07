@@ -3,7 +3,7 @@
         <div v-for="room in rooms" :key="room.name">
             <tile-link
                 :name="room.name"
-                icon="mdi-door"
+                :icon="room.icon"
                 :route="room.name"
                 class="grid-item"
             />
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import data from '@/data/data.json'
+import data from '~/config/json/rooms.json'
 export default {
     data: () => {
         return {

@@ -46,13 +46,14 @@
 export default {
     props: {
         deviceName: { type: String, required: true },
-        noDim: { type: Boolean, required: false }
+        room: { type: String, required: false, default: '' }
     },
     data: () => {
         return {
             demo: false,
             showSlider: false,
             changeInterval: false,
+            noDim: false,
 
             colorTop: '',
             colorBottom: '',
@@ -68,7 +69,6 @@ export default {
             iconOff: 'mdi-lightbulb-outline',
 
             name: 'No Alias',
-            room: 'No Room',
             slider: false,
             currentSlider: false,
             onoff: false
@@ -127,7 +127,11 @@ export default {
             this.onoff = !this.onoff
         },
         long () {
-            this.showSlider = true
+            if (!this.noDim) {
+                this.showSlider = true
+            } else {
+                this.onoff = !this.onoff
+            }
         },
         setDevice () {
             if (this.demo) {
@@ -136,9 +140,12 @@ export default {
                 this.currentSlider = 50
             } else {
                 this.name = this.device.Attributes.alias
-                this.room = this.device.Attributes.pfiRoom
                 this.slider = this.device.Readings.pct.Value
                 this.currentSlider = this.device.Readings.pct.Value
+
+                if (this.device.Attributes.subType !== 'dimmer') {
+                    this.noDim = true
+                }
 
                 if (this.device.Readings.state.Value === 'off') {
                     this.colorTop = this.colorOffTop

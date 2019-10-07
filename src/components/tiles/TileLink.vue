@@ -55,14 +55,13 @@ export default {
 }
 .switch-area {
     position: relative;
-    // margin: 10px auto;
     line-height: 120px;
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
 
     .icon {
-        // margin-top: 30px;
+        margin-top: -10px;
         font-size: 4rem;
     }
 }

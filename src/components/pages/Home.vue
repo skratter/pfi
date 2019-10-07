@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="grid">
-            <tile-plug device-name="HUEDevice2"/>
-            <tile-light device-name="HUEDevice1" :no-dim="false"/>
-            <tile-computer device-name="Computer"/>
+            <div v-for="device in devs" :key="device.name">
+                <component :is="device.type" :room="device.room" :device-name="device.name"/>
+            </div>
         </div>
         <div class="grid">
             <tile-link
@@ -21,10 +21,13 @@
 </template>
 
 <script>
+import devs from '~/config/json/home.json'
+
 export default {
     data: () => {
         return {
-            title: 'Home'
+            title: 'Home',
+            devs: []
         }
     },
     computed: {
@@ -32,6 +35,9 @@ export default {
     },
     mounted () {
         this.$store.commit('setTitle', this.title)
+    },
+    created () {
+        this.devs = devs
     },
     methods: {
 

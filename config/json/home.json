@@ -1,0 +1,17 @@
+[
+    {
+        "name": "HUEDevice2",
+        "room": "Joshua",
+        "type": "tile-plug"
+    },
+    {
+        "name": "HUEDevice1",
+        "room": "Joshua",
+        "type": "tile-light"
+    },
+    {
+        "name": "Computer",
+        "room": "Arbeitszimmer",
+        "type": "tile-computer"
+    }
+]

@@ -26,7 +26,8 @@
 <script>
 export default {
     props: {
-        deviceName: { type: String, required: true }
+        deviceName: { type: String, required: true },
+        room: { type: String, required: false, default: '' }
     },
     data: () => {
         return {
@@ -46,8 +47,7 @@ export default {
             colorOffTop: 'rgba(255,0,0,0.6)',
             colorOffBottom: 'rgba(200,0,0,0.6)',
             clickApp: false,
-            name: 'No Alias',
-            room: 'No Room'
+            name: 'No Alias'
         }
     },
     computed: {
@@ -100,7 +100,6 @@ export default {
                     this.status = true
                 }
                 this.name = this.device.Attributes.alias
-                this.room = this.device.Attributes.pfiRoom
             }
         },
         switchDevice () {

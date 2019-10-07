@@ -1,5 +1,5 @@
 import DynamicRoom from '@/components/pages/DynamicRoom.vue'
-import data from '@/data/data.json'
+import data from '~/config/json/rooms.json'
 
 let rooms = []
 

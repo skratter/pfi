@@ -1,6 +1,17 @@
 <template>
     <div>
-        <div v-for="(item, index) in bvg" :key="index">
+        <div v-if="error">
+            <v-alert
+                class="mt-5"
+                icon="mdi-alert-circle-outline"
+                color="#ff0000"
+                elevation="15"
+                type="error"
+            >
+                Leider keine Verbindung zum Server der BVG.
+            </v-alert>
+        </div>
+        <div v-for="(item, index) in bvg" v-else :key="index">
             <tile-bvg :data="item"/>
         </div>
     </div>
@@ -13,6 +24,7 @@ export default {
         return {
             demo: false,
             axios: null,
+            error: false,
 
             demoData: [
                 {
@@ -117,10 +129,12 @@ export default {
                             }
                         }
                     }
+                    this.error = false
                     self.bvg = Object.values(self.bvg).sort()
                 })
                 .catch(error => {
                     console.log(error)
+                    this.error = true
                 })
         }
     },
