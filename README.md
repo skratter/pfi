@@ -1,5 +1,5 @@
 # PFI - Progressive Fhem Interface
-A socket.io based graphical interface for FHEM.
+A socket.io based graphical interface for FHEM.  
 **DEMO:** https://pfi.skratter.com
 
 Currently i would say this thing is in early alpha.
