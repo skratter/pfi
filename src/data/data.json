@@ -1,0 +1,24 @@
+[
+    {
+        "name": "Joshua",
+        "devs": [
+            {
+                "name": "HUEDevice1",
+                "type": "tile-light"
+            },
+            {
+                "name": "HUEDevice2",
+                "type": "tile-plug"
+            }
+        ]
+    },
+    {
+        "name": "Arbeitszimmer",
+        "devs": [
+            {
+                "name": "Computer",
+                "type": "tile-computer"
+            }
+        ]
+    }
+]

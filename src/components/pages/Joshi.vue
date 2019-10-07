@@ -1,7 +1,7 @@
 <template>
     <div class="grid">
         <tile-plug device-name="HUEDevice2" class="grid-item"/>
-        <tile-light device-name="HUEDevice1" :no-dim="false" class="grid-item"/>
+        <tile-light device-name="HUEDevice1" class="grid-item"/>
     </div>
 </template>
 

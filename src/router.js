@@ -7,6 +7,8 @@ import Joshi from '@/components/pages/Joshi.vue'
 import BVG from '@/components/pages/BVG.vue'
 import Test from '@/components/pages/Test.vue'
 
+import rooms from '@/data/rooms.js'
+
 Vue.use(Router)
 
 export default new Router({
@@ -16,6 +18,7 @@ export default new Router({
         { name: 'rooms', path: '/rooms', component: Rooms },
         { name: 'joshi', path: '/joshi', component: Joshi },
         { name: 'bvg', path: '/bvg', component: BVG },
-        { name: 'test', path: '/test', component: Test }
+        { name: 'test', path: '/test', component: Test },
+        ...rooms
     ]
 })

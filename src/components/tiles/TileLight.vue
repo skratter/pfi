@@ -1,6 +1,6 @@
 <template>
     <div
-        class="plug-tile"
+        class="grid-item plug-tile"
         :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
     >
         <div v-if="!noDim" class="pct white--text">

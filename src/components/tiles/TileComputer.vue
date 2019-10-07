@@ -1,6 +1,6 @@
 <template>
     <div
-        class="tile"
+        class="grid-item tile"
         :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
         @click="switchDevice()"
     >
