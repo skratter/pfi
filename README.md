@@ -14,8 +14,8 @@ Currently i would say this thing is in early alpha.
 
 ---
 
-**Requirements**
-  A working [fhem.js](https://github.com/winne27/fhem.js) connected with your FHEM Server. You just need to install and set the parameters for FHEM connection. Don't worry about the client stuff. PFI will handle it.
+**Requirements**  
+A working [fhem.js](https://github.com/winne27/fhem.js) connected with your FHEM Server. You just need to install and set the parameters for FHEM connection. Don't worry about the client stuff. PFI will handle it.
 
 **Installation**
 1. Download or clone Git Repository
