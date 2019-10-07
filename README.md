@@ -1,23 +1,21 @@
 # PFI - Progressive Fhem Interface
 A socket.io based graphical interface for FHEM.
+**DEMO:** https://pfi.skratter.com
 
 Currently i would say this thing is in early alpha.
 
-**DEMO:** https://pfi.skratter.com
-
-**Currently working on**
-- `data.json` implementation
-
-**Components**
-
-Currently supported Devices:
+**Supported Devices:**
 - Powerplugs
 - Lights (dim and without) - longpress for dimmer.
 - Wake on Lan
 
-**Requirements**
+**Currently working on**
+- `data.json` implementation
 
-A working [fhem.js](https://github.com/winne27/fhem.js). You just need to install and set the parameters for FHEM connection. Don't worry about the client stuff. PFI will handle it.
+---
+
+**Requirements**
+  A working [fhem.js](https://github.com/winne27/fhem.js). You just need to install and set the parameters for FHEM connection. Don't worry about the client stuff. PFI will handle it.
 
 **Installation**
 1. Download or clone Git Repository
