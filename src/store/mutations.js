@@ -5,6 +5,12 @@ const mutations = {
     setDemo (state, mode) {
         Vue.set(state, 'demo', mode)
     },
+    setWeatherApiKey (state, mode) {
+        Vue.set(state, 'weatherApiKey', mode)
+    },
+    setWeatherLocId (state, mode) {
+        Vue.set(state, 'weatherLocId', mode)
+    },
     setTitle (state, title) {
         Vue.set(state, 'title', title)
     },

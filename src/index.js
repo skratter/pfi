@@ -12,6 +12,8 @@ import '../assets/app.scss'
 import '@/components/components.js'
 
 store.commit('setDemo', config.demo)
+store.commit('setWeatherApiKey', config.weatherApiKey)
+store.commit('setWeatherLocId', config.weatherLocId)
 
 Vue.use(Vue2TouchEvents)
 

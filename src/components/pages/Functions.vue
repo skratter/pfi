@@ -1,12 +1,12 @@
 <template>
     <div class="grid">
-        <div v-for="app in apps" :key="app.name">
-            <tile-link
-                :name="app.name"
-                :icon="app.icon"
-                :route="app.route"
-            />
-        </div>
+        <tile-link
+            v-for="app in apps"
+            :key="app.name"
+            :name="app.name"
+            :icon="app.icon"
+            :route="app.route"
+        />
     </div>
 </template>
 

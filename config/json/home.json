@@ -10,8 +10,29 @@
         "type": "tile-light"
     },
     {
+        "name": "Wetter",
+        "room": "",
+        "type": "tile-weather"
+    },
+    {
+        "name": "blank-1",
+        "room": "",
+        "type": "tile-blank"
+    },
+    {
+        "name": "blank-2",
+        "room": "",
+        "type": "tile-blank"
+    },
+    {
+        "name": "blank-3",
+        "room": "",
+        "type": "tile-blank"
+    },
+    {
         "name": "Computer",
         "room": "Arbeitszimmer",
         "type": "tile-computer"
     }
+    
 ]

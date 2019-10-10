@@ -1,9 +1,13 @@
 <template>
     <div>
         <div class="grid">
-            <div v-for="device in devs" :key="device.name">
-                <component :is="device.type" :room="title" :device-name="device.name"/>
-            </div>
+            <component
+                :is="device.type"
+                v-for="device in devs"
+                :key="device.name"
+                :room="title"
+                :device-name="device.name"
+            />
         </div>
     </div>
 </template>

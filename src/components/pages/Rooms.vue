@@ -1,13 +1,12 @@
 <template>
     <div class="grid">
-        <div v-for="room in rooms" :key="room.name">
-            <tile-link
-                :name="room.name"
-                :icon="room.icon"
-                :route="room.name"
-                class="grid-item"
-            />
-        </div>
+        <tile-link
+            v-for="room in rooms"
+            :key="room.name"
+            :name="room.name"
+            :icon="room.icon"
+            :route="room.name"
+        />
     </div>
 </template>
 
