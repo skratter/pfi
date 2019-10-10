@@ -4,24 +4,27 @@
         :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
     >
         <div class="temp">
-            <v-icon class="white--text" style="font-size: 7rem; float: left;">
-                {{ currentWeather.icon }}
-            </v-icon>
+            <img :src="'/img/weather/' + currentWeather.icon" class="weather-icon"/>
             <div class="htlt">
-                {{ currentWeather.ht }}° <br/>
-                {{ currentWeather.lt }}°
+                {{ currentWeather.temp }}°
             </div>
-            {{ currentWeather.temp }}°
+
+            <div class="weather-rain">
+                <img src="/img/weather/Cloud-Rain.svg" class="weather-rain-icon"/>
+                <div class="weather-rain-pct">
+                    {{ currentWeather.rainPct }} %
+                </div>
+            </div>
             <div class="sunset" style="float: right;">
-                <v-icon class="white--text">
-                    mdi-weather-sunset-up
-                </v-icon>
-                {{ currentWeather.sunrise }}
+                <img src="/img/weather/Sunrise.svg" class="sunrise-icon"/>
+                <div class="sunrise-text">
+                    {{ currentWeather.sunrise }}
+                </div>
                 <br/>
-                <v-icon class="white--text">
-                    mdi-weather-sunset-down
-                </v-icon>
-                {{ currentWeather.sunset }}
+                <img src="/img/weather/Sunset.svg" class="sunrise-icon"/>
+                <div class="sunset-text">
+                    {{ currentWeather.sunset }}
+                </div>
             </div>
         </div>
         <div style="clear: both;">
@@ -32,9 +35,7 @@
                 <v-col>
                     <v-row align="center" justify="center">
                         <div v-for="item in forecast" :key="item.time" class="forecast-item">
-                            <v-icon class="white--text forecast-icon">
-                                {{ item.icon }}
-                            </v-icon>
+                            <img :src="'/img/weather/' + item.icon" class="forecast-icon"/>
                             <div class="forecast-temp">
                                 {{ item.temp }}°
                             </div>
@@ -62,36 +63,34 @@ export default {
             colorBottom: 'rgba(100,100,100,0.6)',
             currentWeather: {
                 temp: 'TT',
-                icon: 'mdi-weather-cloudy-alert',
-                ht: 'HT',
-                lt: 'LT',
+                apparentTemperature: 'FT',
+                icon: 'Cloud-Download.svg',
+                rainPct: 100,
                 sunriseRaw: '0',
                 sunsetRaw: '0',
                 sunrise: '08:00',
-                sunset: '20:00',
-                rain: '',
-                cloud: ''
+                sunset: '20:00'
             },
             forecast: [
                 {
                     time: '00:00',
                     temp: 'TT',
-                    icon: 'mdi-weather-cloudy-alert'
+                    icon: 'Cloud-Download.svg'
                 },
                 {
                     time: '03:00',
                     temp: 'TT',
-                    icon: 'mdi-weather-cloudy-alert'
+                    icon: 'Cloud-Download.svg'
                 },
                 {
                     time: '06:00',
                     temp: 'TT',
-                    icon: 'mdi-weather-cloudy-alert'
+                    icon: 'Cloud-Download.svg'
                 },
                 {
                     time: '09:00',
                     temp: 'TT',
-                    icon: 'mdi-weather-cloudy-alert'
+                    icon: 'Cloud-Download.svg'
                 }
             ]
         }
@@ -113,84 +112,69 @@ export default {
     mounted () {
         if (!this.demo) {
             this.$axios.get(
-                'http://api.openweathermap.org/data/2.5/weather?id=' +
+                'https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/' +
+                this.weatherApiKey +
+                '/' +
                 this.weatherLocId +
-                '&units=metric' +
-                '&APPID=' +
-                this.weatherApiKey
+                '?lang=de&units=ca'
             )
                 .then(response => {
                     let data = response.data
                     console.log(data)
-                    this.sunriseRaw = new Date((data.sys.sunrise) * 1000)
-                    this.sunsetRaw = new Date((data.sys.sunset) * 1000)
+
+                    this.sunriseRaw = new Date((data.daily.data[1].sunriseTime) * 1000)
+                    this.sunsetRaw = new Date((data.daily.data[1].sunsetTime) * 1000)
                     this.currentWeather.sunrise = this.sunriseRaw.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
                     this.currentWeather.sunset = this.sunsetRaw.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
-                    this.currentWeather.temp = parseInt(data.main.temp)
-                    this.currentWeather.ht = parseInt(data.main.temp_max)
-                    this.currentWeather.lt = parseInt(data.main.temp_min)
-                    let night = this.itsNight()
-                    this.currentWeather.icon = this.getWeatherCondition(data.weather[0].id)
-                    console.log(night)
-                })
-            this.$axios.get(
-                'http://api.openweathermap.org/data/2.5/forecast?id=' +
-                this.weatherLocId +
-                '&cnt=4' +
-                '&units=metric' +
-                '&APPID=' +
-                this.weatherApiKey
-            )
-                .then(response => {
-                    let data = response.data
-                    console.log(data)
-                    for (let i = 0; i < data.list.length; i++) {
-                        console.log(data.list[i])
-                        this.forecast[i].time = new Date((data.list[i].dt) * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
-                        this.forecast[i].temp = parseInt(data.list[i].main.temp)
-                        this.forecast[i].icon = this.getWeatherCondition(data.list[i].weather[0].id)
+
+                    this.currentWeather.temp = Math.round(data.currently.temperature)
+                    this.currentWeather.apparentTemperature = Math.round(data.currently.apparentTemperature)
+                    this.currentWeather.icon = this.getWeatherIcon(data.currently.icon)
+                    // this.currentWeather.rainPct = data.currently.precipProbability * 100
+
+                    for (let i = 1; i < 12;) {
+                        this.forecast[Math.ceil(i / 3) - 1].time = new Date((data.hourly.data[(Math.ceil(i / 3) * 3)].time) * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
+                        this.forecast[Math.ceil(i / 3) - 1].temp = Math.round(data.hourly.data[(Math.ceil(i / 3) * 3)].temperature)
+                        this.forecast[Math.ceil(i / 3) - 1].icon = this.getWeatherIcon(data.hourly.data[(Math.ceil(i / 3) * 3)].icon)
+                        i = i + 3
                     }
                 })
         }
     },
     created () {
-
     },
     methods: {
-        itsNight () {
-            let currentTime = new Date()
-            if (this.sunriseRaw < currentTime && this.sunsetRaw > currentTime) {
-                return false
-            } else {
-                return true
-            }
-        },
-        getWeatherCondition (code) {
-            switch (true) {
-            case (code >= 200 && code < 300):
-                return 'mdi-weather-lightning'
-            case (code >= 300 && code < 400):
-                return 'mdi-weather-pouring'
-            case (code >= 500 && code <= 504):
-                return 'mdi-weather-partly-rainy'
-            case (code === 511):
-                return 'mdi-snowflake'
-            case (code >= 520 && code <= 531):
-                return 'mdi-weather-pouring'
-            case (code >= 600 && code < 700):
-                return 'mdi-snowflake'
-            case (code >= 700 && code < 800):
-                return 'mdi-weather-fog'
-            case (code === 801):
-                return 'mdi-weather-partly-cloudy'
-            case (code === 802):
-                return 'mdi-weather-cloudy'
-            case (code === 803):
-                return 'mdi-cloud'
-            case (code === 804):
-                return 'mdi-cloud'
+        getWeatherIcon (code) {
+            switch (code) {
+            case 'clear-day':
+                return 'Sun.svg'
+            case 'clear-night':
+                return 'Moon.svg'
+            case 'rain':
+                return 'Cloud-Rain.svg'
+            case 'snow':
+                return 'Cloud-Snow.svg'
+            case 'sleet':
+                return 'Cloud-Hail.svg'
+            case 'wind':
+                return 'Wind.svg'
+            case 'fog':
+                return 'Cloud-Fog-Alt.svg'
+            case 'cloudy':
+                return 'Cloud.svg'
+            case 'partly-cloudy-day':
+                return 'Cloud-Sun.svg'
+            case 'partly-cloudy-night':
+                return 'Cloud-Moon.svg'
+                // return 'Cloud-Moon.svg'
+            case 'hail':
+                return 'Cloud-Hail.svg'
+            case 'thunderstorm':
+                return 'Cloud-Lightning.svg'
+            case 'tornado':
+                return 'Tornado.svg'
             default:
-                return 'mdi-weather-cloudy-alert'
+                return 'Cloud-Download.svg'
             }
         }
     }
@@ -206,23 +190,48 @@ export default {
     height: 245px;
     cursor: pointer;
 }
+.weather-icon{
+    margin: -50px;
+    margin-top: -40px;
+    width: 200px;
+    height: auto;
+    filter: invert(1);
+    float:left;
+}
 .sunset {
     font-size: 1.0rem;
     margin-top: 32px;
 }
+.sunrise-icon {
+    width: 60px;
+    margin: -15px;
+    margin-right: 20px;
+    margin-top: -22px;
+    filter: invert(1)
+}
+.sunrise-text {
+    position: absolute;
+    top: 36px;
+    right: 15px;
+}
+.sunset-text {
+    position: absolute;
+    top: 66px;
+    right: 15px;
+}
 .temp {
-    font-size: 3rem;
+    font-size: 3.2rem;
     margin-top: 5px;
     margin-right: 24px;
-    margin-left: 24px;
+    margin-left: 16px;
 }
 .htlt {
     text-align: right;
-    margin-top: 32px;
-    margin-left: 12px;
+    margin-top: 18px;
+    margin-left: 10px;
     margin-right: 0;
     display: inline-block;
-    font-size: 1rem;
+    font-size: 3rem;
 }
 .forecast {
     position: absolute;
@@ -235,7 +244,13 @@ export default {
     margin: 6px;
 }
 .forecast-icon {
-    font-size: 2.9rem;
+    width: 80px;
+    height: auto;
+    filter: invert(1);
+    margin-top: -35px;
+    margin-left: -22px;
+    margin-right: -15px;
+    margin-bottom: -34px;
 }
 .forecast-temp {
     display: inline-block;
@@ -243,8 +258,31 @@ export default {
     line-height: 3rem;
 }
 .forecast-time {
-    text-align: center;
+    // text-align: center;
     width: 80px;
     font-size: 1rem;
+    margin-top: -5px;
+}
+.weather-rain {
+    display: inline-block;
+    font-size: 1rem;
+}
+.weather-rain-icon {
+    position: absolute;
+    top: 18px;
+    left: 190px;
+    filter: invert(1);
+    width: 50px;
+    height: auto;
+    margin-top: 0;
+    margin-left: 10px;
+}
+.weather-rain-pct {
+    display: block;
+    position: absolute;
+    top: 58px;
+    left: 203px;
+    width: 50px;
+    text-align: center;
 }
 </style>
