@@ -130,7 +130,7 @@ export default {
                     this.currentWeather.temp = Math.round(data.currently.temperature)
                     this.currentWeather.apparentTemperature = Math.round(data.currently.apparentTemperature)
                     this.currentWeather.icon = this.getWeatherIcon(data.currently.icon)
-                    // this.currentWeather.rainPct = data.currently.precipProbability * 100
+                    this.currentWeather.rainPct = data.currently.precipProbability * 100
 
                     for (let i = 1; i < 12;) {
                         this.forecast[Math.ceil(i / 3) - 1].time = new Date((data.hourly.data[(Math.ceil(i / 3) * 3)].time) * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
