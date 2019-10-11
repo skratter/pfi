@@ -2,6 +2,7 @@
     <div
         class="grid-item tile white--text"
         :style="{ 'background': 'linear-gradient(to bottom, '+colorTop+', '+colorBottom+')' }"
+        @click="goToWeather()"
     >
         <div class="temp">
             <img :src="'/img/weather/' + currentWeather.icon" class="weather-icon"/>
@@ -38,6 +39,9 @@
                             <img :src="'/img/weather/' + item.icon" class="forecast-icon"/>
                             <div class="forecast-temp">
                                 {{ item.temp }}°
+                                <div class="forecast-rain">
+                                    {{ item.rain }}%
+                                </div>
                             </div>
                             <div>
                                 <div class="forecast-time">
@@ -59,8 +63,8 @@ export default {
     },
     data: () => {
         return {
-            colorTop: 'rgba(30,30,30,0.6)',
-            colorBottom: 'rgba(100,100,100,0.6)',
+            colorTop: 'rgba(20,20,20,0.6)',
+            colorBottom: 'rgba(70,70,70,0.6)',
             currentWeather: {
                 temp: 'TT',
                 apparentTemperature: 'FT',
@@ -75,21 +79,25 @@ export default {
                 {
                     time: '00:00',
                     temp: 'TT',
+                    rain: '100',
                     icon: 'Cloud-Download.svg'
                 },
                 {
                     time: '03:00',
                     temp: 'TT',
+                    rain: '100',
                     icon: 'Cloud-Download.svg'
                 },
                 {
                     time: '06:00',
                     temp: 'TT',
+                    rain: '100',
                     icon: 'Cloud-Download.svg'
                 },
                 {
                     time: '09:00',
                     temp: 'TT',
+                    rain: '100',
                     icon: 'Cloud-Download.svg'
                 }
             ]
@@ -127,15 +135,16 @@ export default {
                     this.currentWeather.sunrise = this.sunriseRaw.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
                     this.currentWeather.sunset = this.sunsetRaw.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
 
-                    this.currentWeather.temp = Math.round(data.currently.temperature)
-                    this.currentWeather.apparentTemperature = Math.round(data.currently.apparentTemperature)
+                    this.currentWeather.temp = this.toInt(data.currently.temperature)
+                    this.currentWeather.apparentTemperature = this.toInt(data.currently.apparentTemperature)
                     this.currentWeather.icon = this.getWeatherIcon(data.currently.icon)
                     this.currentWeather.rainPct = data.currently.precipProbability * 100
 
                     for (let i = 1; i < 12;) {
                         this.forecast[Math.ceil(i / 3) - 1].time = new Date((data.hourly.data[(Math.ceil(i / 3) * 3)].time) * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
-                        this.forecast[Math.ceil(i / 3) - 1].temp = Math.round(data.hourly.data[(Math.ceil(i / 3) * 3)].temperature)
+                        this.forecast[Math.ceil(i / 3) - 1].temp = this.toInt(data.hourly.data[(Math.ceil(i / 3) * 3)].temperature)
                         this.forecast[Math.ceil(i / 3) - 1].icon = this.getWeatherIcon(data.hourly.data[(Math.ceil(i / 3) * 3)].icon)
+                        this.forecast[Math.ceil(i / 3) - 1].rain = this.toInt(data.hourly.data[(Math.ceil(i / 3) * 3)].precipProbability)
                         i = i + 3
                     }
                 })
@@ -144,6 +153,9 @@ export default {
     created () {
     },
     methods: {
+        toInt (number) {
+            return parseInt(Math.round(number))
+        },
         getWeatherIcon (code) {
             switch (code) {
             case 'clear-day':
@@ -176,6 +188,9 @@ export default {
             default:
                 return 'Cloud-Download.svg'
             }
+        },
+        goToWeather () {
+            this.$router.push({ name: 'weather' })
         }
     }
 }
@@ -191,11 +206,11 @@ export default {
     cursor: pointer;
 }
 .weather-icon{
-    margin: -50px;
-    margin-top: -40px;
+    margin: -56px;
+    margin-top: -50px;
     width: 200px;
     height: auto;
-    filter: invert(1);
+    // filter: invert(1);
     float:left;
 }
 .sunset {
@@ -207,21 +222,21 @@ export default {
     margin: -15px;
     margin-right: 20px;
     margin-top: -22px;
-    filter: invert(1)
+    // filter: invert(1)
 }
 .sunrise-text {
     position: absolute;
-    top: 36px;
+    top: 38px;
     right: 15px;
 }
 .sunset-text {
     position: absolute;
-    top: 66px;
+    top: 67px;
     right: 15px;
 }
 .temp {
     font-size: 3.2rem;
-    margin-top: 5px;
+    margin-top: 7px;
     margin-right: 24px;
     margin-left: 16px;
 }
@@ -246,22 +261,27 @@ export default {
 .forecast-icon {
     width: 80px;
     height: auto;
-    filter: invert(1);
-    margin-top: -35px;
+    // filter: invert(1);
     margin-left: -22px;
-    margin-right: -15px;
-    margin-bottom: -34px;
+    margin-right: -16px;
+    margin-bottom: -22px;
 }
 .forecast-temp {
     display: inline-block;
     font-size: 1.2rem;
-    line-height: 3rem;
+    margin: 0;
+}
+.forecast-rain {
+    display: block;
+    margin-top: -5px;
+    font-size: .8rem;
 }
 .forecast-time {
     // text-align: center;
     width: 80px;
-    font-size: 1rem;
-    margin-top: -5px;
+    font-size: .8rem;
+    margin-top: -3px;
+    padding-left: 5px;
 }
 .weather-rain {
     display: inline-block;
@@ -269,9 +289,9 @@ export default {
 }
 .weather-rain-icon {
     position: absolute;
-    top: 18px;
-    left: 190px;
-    filter: invert(1);
+    top: 20px;
+    left: 195px;
+    // filter: invert(1);
     width: 50px;
     height: auto;
     margin-top: 0;
@@ -280,8 +300,8 @@ export default {
 .weather-rain-pct {
     display: block;
     position: absolute;
-    top: 58px;
-    left: 203px;
+    top: 60px;
+    left: 208px;
     width: 50px;
     text-align: center;
 }
