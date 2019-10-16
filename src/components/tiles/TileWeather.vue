@@ -144,7 +144,7 @@ export default {
                         this.forecast[Math.ceil(i / 3) - 1].time = new Date((data.hourly.data[(Math.ceil(i / 3) * 3)].time) * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
                         this.forecast[Math.ceil(i / 3) - 1].temp = this.toInt(data.hourly.data[(Math.ceil(i / 3) * 3)].temperature)
                         this.forecast[Math.ceil(i / 3) - 1].icon = this.getWeatherIcon(data.hourly.data[(Math.ceil(i / 3) * 3)].icon)
-                        this.forecast[Math.ceil(i / 3) - 1].rain = this.toInt(data.hourly.data[(Math.ceil(i / 3) * 3)].precipProbability)
+                        this.forecast[Math.ceil(i / 3) - 1].rain = this.toInt((data.hourly.data[(Math.ceil(i / 3) * 3)].precipProbability) * 100)
                         i = i + 3
                     }
                 })

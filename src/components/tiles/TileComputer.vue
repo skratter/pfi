@@ -38,10 +38,10 @@ export default {
     data: () => {
         return {
             demo: false,
-            status: false,
             state: 'off',
             switched: false,
             toggle: 'off',
+            running: false,
 
             icon: 'mdi-desktop-tower',
             iconWait: 'mdi-timer-sand',
@@ -85,23 +85,23 @@ export default {
                 this.name = 'Demo WoL'
                 this.colorTop = this.colorOffTop
                 this.colorBottom = this.colorOffBottom
-                this.status = false
+                this.running = false
             } else {
-                if (this.device.Readings.state.Value === 'off') {
+                if (this.device.Readings.isRunning.Value === 'false') {
                     this.colorTop = this.colorOffTop
                     this.colorBottom = this.colorOffBottom
-                    this.state = 'off'
+                    this.running = false
                 }
-                if (this.device.Readings.state.Value === 'on') {
+                if (this.device.Readings.isRunning.Value === 'true') {
                     this.colorTop = this.colorOnTop
                     this.colorBottom = this.colorOnBottom
-                    this.state = 'on'
+                    this.running = true
                 }
                 let t1 = (new Date(this.device.Readings.state.Time).getTime() / 1000)
                 let t2 = (new Date(this.device.Readings.active.Time).getTime() / 1000)
 
                 if (this.device.Readings.state.Value !== this.device.Readings.active.Value && (t1 - t2) < 310) {
-                    this.toggle = this.device.Readings.active.Value
+                    // this.toggle = this.device.Readings.active.Value
                     this.switched = true
                     this.colorTop = this.colorWaitTop
                     this.colorBottom = this.colorWaitBottom
@@ -113,7 +113,7 @@ export default {
         },
         switchDevice () {
             if (!this.demo) {
-                if (this.state === 'off') {
+                if (!this.running) {
                     this.toggle = 'on'
                 } else {
                     this.toggle = 'off'
@@ -124,8 +124,8 @@ export default {
                     state: this.toggle
                 })
             } else {
-                this.status = !this.status
-                if (this.status) {
+                this.running = !this.running
+                if (this.running) {
                     this.colorTop = this.colorOnTop
                     this.colorBottom = this.colorOnBottom
                 } else {
