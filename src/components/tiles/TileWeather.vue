@@ -67,7 +67,6 @@ export default {
             colorBottom: 'rgba(70,70,70,0.6)',
             currentWeather: {
                 temp: 'TT',
-                apparentTemperature: 'FT',
                 icon: 'Cloud-Download.svg',
                 rainPct: 100,
                 sunriseRaw: '0',
@@ -128,7 +127,6 @@ export default {
             )
                 .then(response => {
                     let data = response.data
-                    console.log(data)
 
                     this.sunriseRaw = new Date((data.daily.data[1].sunriseTime) * 1000)
                     this.sunsetRaw = new Date((data.daily.data[1].sunsetTime) * 1000)
@@ -136,9 +134,8 @@ export default {
                     this.currentWeather.sunset = this.sunsetRaw.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })
 
                     this.currentWeather.temp = this.toInt(data.currently.temperature)
-                    this.currentWeather.apparentTemperature = this.toInt(data.currently.apparentTemperature)
                     this.currentWeather.icon = this.getWeatherIcon(data.currently.icon)
-                    this.currentWeather.rainPct = data.currently.precipProbability * 100
+                    this.currentWeather.rainPct = this.toInt(data.currently.precipProbability * 100)
 
                     for (let i = 1; i < 12;) {
                         this.forecast[Math.ceil(i / 3) - 1].time = new Date((data.hourly.data[(Math.ceil(i / 3) * 3)].time) * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })

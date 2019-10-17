@@ -5,10 +5,10 @@
         @click="switchDevice()"
     >
         <div v-if="switched" class="status white--text">
-            next: {{ toggle }}
+            next: {{ nextState }}
         </div>
         <div v-else class="status white--text">
-            {{ state }}
+            {{ (running ? 'on' : 'off') }}
         </div>
         <div class="switch-area">
             <v-icon v-if="switched" class="white--text icon">
@@ -30,6 +30,7 @@
 </template>
 
 <script>
+import dayjs from 'dayjs'
 export default {
     props: {
         deviceName: { type: String, required: true },
@@ -38,7 +39,6 @@ export default {
     data: () => {
         return {
             demo: false,
-            state: 'off',
             switched: false,
             toggle: 'off',
             running: false,
@@ -55,6 +55,7 @@ export default {
             colorOffBottom: 'rgba(200,0,0,0.6)',
             colorWaitTop: 'rgba(255,196,0,0.6)',
             colorWaitBottom: 'rgba(200,120,0,0.6)',
+            nextState: '',
             name: 'No Alias'
         }
     },
@@ -97,12 +98,13 @@ export default {
                     this.colorBottom = this.colorOnBottom
                     this.running = true
                 }
-                let t1 = (new Date(this.device.Readings.state.Time).getTime() / 1000)
-                let t2 = (new Date(this.device.Readings.active.Time).getTime() / 1000)
 
-                if (this.device.Readings.state.Value !== this.device.Readings.active.Value && (t1 - t2) < 310) {
-                    // this.toggle = this.device.Readings.active.Value
+                const t1 = dayjs(this.device.Readings.state.Time)
+                const t2 = dayjs(this.device.Readings.active.Time)
+
+                if (this.device.Readings.state.Value !== this.device.Readings.active.Value && (t1.diff(t2) / 1000) < 310) {
                     this.switched = true
+                    this.nextState = this.device.Readings.active.Value
                     this.colorTop = this.colorWaitTop
                     this.colorBottom = this.colorWaitBottom
                 } else {
